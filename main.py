@@ -7,7 +7,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui = Ui_VenPrincipal()
         var.ui.setupUi(self)
 
-        var.ui.btn_aceptar.clicked.connect(events.Eventos.Saludo)
+        var.ui.btn_salir.clicked.connect(events.Eventos.Salir)
 
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
 
