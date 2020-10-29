@@ -22,8 +22,8 @@
    <widget class="QPushButton" name="btn_aceptar">
     <property name="geometry">
      <rect>
-      <x>240</x>
-      <y>370</y>
+      <x>280</x>
+      <y>400</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -254,7 +254,7 @@ color: rgb(255, 0, 0);</string>
       <x>30</x>
       <y>160</y>
       <width>111</width>
-      <height>41</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -269,10 +269,10 @@ color: rgb(255, 0, 0);</string>
    <widget class="QLabel" name="lbl_nombre">
     <property name="geometry">
      <rect>
-      <x>430</x>
+      <x>420</x>
       <y>160</y>
       <width>111</width>
-      <height>41</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -287,8 +287,8 @@ color: rgb(255, 0, 0);</string>
    <widget class="QPushButton" name="btn_salir">
     <property name="geometry">
      <rect>
-      <x>470</x>
-      <y>370</y>
+      <x>430</x>
+      <y>400</y>
       <width>75</width>
       <height>23</height>
      </rect>
@@ -314,7 +314,7 @@ color: rgb(255, 0, 0);</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>230</y>
+      <y>380</y>
       <width>761</width>
       <height>20</height>
      </rect>
@@ -385,6 +385,170 @@ color: rgb(255, 0, 0);</string>
     </property>
     <property name="text">
      <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_sexo">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>300</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Sexo:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lbl_metodo">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>300</y>
+      <width>161</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Metodo de pago:</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>300</y>
+      <width>160</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="hl_sex">
+     <item>
+      <widget class="QRadioButton" name="rbtFem">
+       <property name="text">
+        <string>Femenino</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="rbtMasc">
+       <property name="text">
+        <string>Masculino</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>510</x>
+      <y>300</y>
+      <width>225</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="hl_met">
+     <item>
+      <widget class="QCheckBox" name="chkEfec">
+       <property name="text">
+        <string>Efectivo</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="chkTarj">
+       <property name="text">
+        <string>Tarjeta</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QCheckBox" name="chkTrans">
+       <property name="text">
+        <string>Transferencia</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QLabel" name="lblPrueba">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>360</y>
+      <width>71</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblDireccion">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>230</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Direccion:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblProvincia">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>230</y>
+      <width>101</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Provincia:</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="ent_direccion">
+    <property name="geometry">
+     <rect>
+      <x>130</x>
+      <y>230</y>
+      <width>271</width>
+      <height>20</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cmbProv">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>230</y>
+      <width>211</width>
+      <height>22</height>
+     </rect>
     </property>
    </widget>
   </widget>

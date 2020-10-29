@@ -1,14 +1,9 @@
 import var
 
 class Clientes():
-    '''
-    eventos cliente
-    '''
+
     def validarDni(dni):
-        '''
-        Código que controla si el dni o nie es correcto
-        :return:
-        '''
+
         try:
             tabla = 'TRWAGMYFPDXBNJZSQVHLCKE'
             dig_ext = 'XYZ'
@@ -27,10 +22,7 @@ class Clientes():
             return None
 
     def validoDni():
-        '''
-        muestra mensaje de dni válido
-        :return:
-        '''
+
         try:
             dni = var.ui.ent_dni.text()
             print(Clientes.validarDni(dni))
@@ -46,3 +38,18 @@ class Clientes():
         except:
             print('Error módulo escribir valido DNI')
             return None
+
+    def cargarProv():
+        try:
+            prov = ['','A Coruña','Lugo','Ourense','Pontevedra']
+            for i in prov:
+                var.ui.cmbProv.addItem(i)
+        except Exception as error:
+            print('Error: %s ' & str(error))
+
+    def selProv(prov):
+        try:
+            print('Has seleccionado la provincia de', prov)
+            return prov
+        except Exception as error:
+            print('Error: %s ' % str(error))
