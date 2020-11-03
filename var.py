@@ -1,1 +1,1 @@
-global ui,dialog,rbtSex
+global ui,avisoSalir,rbtSex
