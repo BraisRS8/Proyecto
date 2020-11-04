@@ -53,3 +53,17 @@ class Clientes():
             return prov
         except Exception as error:
             print('Error: %s ' % str(error))
+
+    def abrirCalendar(self):
+        try:
+            var.dlgcalendar.show()
+        except Exception as error:
+            print('Error: %s ' % str(error))
+
+    def cargarFecha(qDate):
+        try:
+            data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
+            var.ui.ent_fecha.setText(str(data))
+            var.dlgcalendar.hide()
+        except Exception as error:
+            print('Error: %s ' % str(error))

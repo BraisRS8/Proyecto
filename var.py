@@ -1,1 +1,1 @@
-global ui,avisoSalir,rbtSex
+global ui,avisoSalir,rbtSex,dlgcalendar

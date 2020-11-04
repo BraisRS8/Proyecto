@@ -595,8 +595,8 @@ color: rgb(255, 0, 0);</string>
      <string/>
     </property>
     <property name="icon">
-     <iconset resource="img/calendar.qrc">
-      <normaloff>:/newPrefix/calendar.png</normaloff>:/newPrefix/calendar.png</iconset>
+     <iconset>
+      <normaloff>img/calendar.png</normaloff>img/calendar.png</iconset>
     </property>
     <property name="iconSize">
      <size>

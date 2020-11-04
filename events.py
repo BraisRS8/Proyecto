@@ -3,13 +3,14 @@ import var, sys
 class Eventos():
 
 
-        def Salir():
+        def Salir(event):
             try:
                 var.avisoSalir.show()
                 if var.avisoSalir.exec_():
                     sys.exit()
                 else:
                     var.avisoSalir.close()
+                    event.ignore()
             except Exception as error:
                 print("Error %s: " % str(error))
 
