@@ -1,1 +1,2 @@
-global ui,avisoSalir,rbtSex,dlgcalendar
+global ui,avisoSalir,rbtSex,dlgcalendar,sex
+pay = []

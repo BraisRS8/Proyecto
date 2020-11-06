@@ -17,19 +17,19 @@ class Eventos():
         def selSexo():
             try:
                 if var.ui.rbtFem.isChecked():
-                    var.ui.lblPrueba.setText('Femenino')
+                    var.sex = 'Mujer'
                 if var.ui.rbtMasc.isChecked():
-                    var.ui.lblPrueba.setText('Masculino')
+                    var.sex = 'Hombre'
             except Exception as error:
                 print('Error: %s ' % str(error))
 
         def selPago():
             try:
                 if var.ui.chkEfec.isChecked():
-                    print('Pagas con efectivo')
+                    var.pay.append("Efectivo")
                 if var.ui.chkTarj.isChecked():
-                    print('Pagas con tarjeta')
+                    var.pay.append("Tarjeta")
                 if var.ui.chkTrans.isChecked():
-                    print('Pagas con transferencia')
+                    var.pay.append("Transferencia")
             except Exception as error:
                 print('Error: %s ' % str(error))

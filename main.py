@@ -43,6 +43,7 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.btnCalendar.clicked.connect(clients.Clientes.abrirCalendar)
 
+        var.ui.btn_aceptar.clicked.connect(clients.Clientes.showClients)
 
         for i in var.rbtsex:
             i.toggled.connect(events.Eventos.selSexo)
