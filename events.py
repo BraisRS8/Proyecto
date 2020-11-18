@@ -1,35 +1,36 @@
-import var, sys
+import sys, var
 
 class Eventos():
 
+    def Salir(event):
 
-        def Salir(event):
-            try:
-                var.avisoSalir.show()
-                if var.avisoSalir.exec_():
-                    sys.exit()
-                else:
-                    var.avisoSalir.close()
-                    event.ignore()
-            except Exception as error:
-                print("Error %s: " % str(error))
+        try:
+            var.dlgsalir.show()
+            if var.dlgsalir.exec_():
+                #print(event)
+                sys.exit()
+            else:
+                var.dlgsalir.hide()
+                event.ignore()
 
-        def selSexo():
-            try:
-                if var.ui.rbtFem.isChecked():
-                    var.sex = 'Mujer'
-                if var.ui.rbtMasc.isChecked():
-                    var.sex = 'Hombre'
-            except Exception as error:
-                print('Error: %s ' % str(error))
+        except Exception as error:
+            print('Error %s' % str(error))
 
-        def selPago():
-            try:
-                if var.ui.chkEfec.isChecked():
-                    var.pay.append("Efectivo")
-                if var.ui.chkTarj.isChecked():
-                    var.pay.append("Tarjeta")
-                if var.ui.chkTrans.isChecked():
-                    var.pay.append("Transferencia")
-            except Exception as error:
-                print('Error: %s ' % str(error))
+    def closeSalir(event):
+        try:
+            if var.dlgsalir.exec_():
+                print(event)
+                var.dlgsalir.hide()
+               #necesario para que ignore X de la ventana
+        except Exception as error:
+            print('Error %s' % str(error))
+
+    def cargarProv():
+
+        try:
+            prov = ['','A Coruña', 'Lugo', 'Ourense', 'Pontevedra', 'Vigo']
+            for i in prov:
+                var.ui.cmbProv.addItem(i)
+
+        except Exception as error:
+            print('Error: %s' % str(error))

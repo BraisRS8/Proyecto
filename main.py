@@ -2,15 +2,18 @@ from Ventana import *
 from vensalir import *
 from vencalendar import *
 from datetime import datetime
-import sys, var , events , clients
+import sys, var, events, clients, conexion
 
 
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):
         super(DialogSalir, self).__init__()
-        var.avisoSalir = Ui_venSalir()
-        var.avisoSalir.setupUi(self)
-        var.avisoSalir.btnBox.button(QtWidgets.QDialogButtonBox.Yes).clicked.connect(events.Eventos.Salir)
+        var.dlgsalir = Ui_venSalir()
+        var.dlgsalir.setupUi(self)
+        var.dlgsalir.btnBox.button(QtWidgets.QDialogButtonBox.Yes).clicked.connect(events.Eventos.Salir)
+        # var.dlgsalir.btnBoxSalir.button(QtWidgets.QDialogButtonBox.No).clicked.connect(events.Eventos.closeSalir)
+        # no es neceasario no quiero que haga nada
+
 
 class DialogCalendar(QtWidgets.QDialog):
     def __init__(self):
@@ -20,51 +23,63 @@ class DialogCalendar(QtWidgets.QDialog):
         diaactual = datetime.now().day
         mesactual = datetime.now().month
         anoactual = datetime.now().year
-        var.dlgcalendar.calendar.setSelectedDate((QtCore.QDate(anoactual,mesactual,diaactual)))
+        var.dlgcalendar.calendar.setSelectedDate((QtCore.QDate(anoactual, mesactual, diaactual)))
         var.dlgcalendar.calendar.clicked.connect(clients.Clientes.cargarFecha)
+
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
         var.ui = Ui_VenPrincipal()
         var.ui.setupUi(self)
-        var.avisoSalir = DialogSalir()
+        var.dlgsalir = DialogSalir()
         var.dlgcalendar = DialogCalendar()
 
-        QtWidgets.QAction(self).triggered.connect(self.close)
-
-        var.ui.btn_salir.clicked.connect(events.Eventos.Salir)
-
-        var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
-
-        var.ui.ent_dni.editingFinished.connect(clients.Clientes.validoDni)
-
+        '''
+        colección de datos
+        '''
         var.rbtsex = (var.ui.rbtFem, var.ui.rbtMasc)
-
+        var.chkpago = (var.ui.chkEfec, var.ui.chkTar, var.ui.chkTrans)
+        '''
+        conexion de eventos con los objetos
+        estamos conectando el código con la interfaz gráfico
+        botones formulario cliente
+        '''
+        var.ui.btnSalir.clicked.connect(events.Eventos.Salir)
+        var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
+        var.ui.editDni.editingFinished.connect(lambda: clients.Clientes.validoDni())
         var.ui.btnCalendar.clicked.connect(clients.Clientes.abrirCalendar)
-
-        var.ui.btn_aceptar.clicked.connect(clients.Clientes.showClients)
-
+        var.ui.btnAltaCli.clicked.connect(clients.Clientes.altaCliente)
+        var.ui.btnLimpiarCli.clicked.connect(clients.Clientes.limpiarCli)
+        var.ui.btnBajaCli.clicked.connect(clients.Clientes.bajaCliente)
+        var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCliente)
         for i in var.rbtsex:
-            i.toggled.connect(events.Eventos.selSexo)
-
-        var.chkpago = (var.ui.chkEfec, var.ui.chkTarj, var.ui.chkTrans)
-
+            i.toggled.connect(clients.Clientes.selSexo)
         for i in var.chkpago:
-            i.stateChanged.connect(events.Eventos.selPago)
+            i.stateChanged.connect(clients.Clientes.selPago)
 
-        clients.Clientes.cargarProv()
         var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
+        var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
+        var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        events.Eventos.cargarProv()
+        var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
+        var.ui.lblstatus.setText('Bienvenido a 2º DAM    Fecha: '+str(datetime.today().strftime('%d-%m-%Y')))
+        '''
+        módulos conexion base datos
+        '''
 
-
+        conexion.Conexion.db_connect(var.filebd)
+        # conexion.Conexion()
+        conexion.Conexion.mostrarClientes(self)
 
     def closeEvent(self, event):
-        events.Eventos.Salir()
+        if event:
+            events.Eventos.Salir(event)
+
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])
     window = Main()
-    window.show()
+    window.showMaximized()
     sys.exit(app.exec())
-
 
