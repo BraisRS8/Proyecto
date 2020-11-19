@@ -395,10 +395,13 @@
             <property name="text">
              <string/>
             </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
            </widget>
           </item>
           <item row="0" column="5">
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="btnSearchCli">
             <property name="text">
              <string/>
             </property>
@@ -415,7 +418,7 @@
            </widget>
           </item>
           <item row="0" column="6">
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="btnReloadCli">
             <property name="text">
              <string/>
             </property>
@@ -1020,7 +1023,11 @@ background-color: rgb(242, 231, 255);</string>
  <resources/>
  <connections/>
  <buttongroups>
+  <buttongroup name="grpbtnPay">
+   <property name="exclusive">
+    <bool>false</bool>
+   </property>
+  </buttongroup>
   <buttongroup name="grpbtnSex"/>
-  <buttongroup name="grpbtnPay"/>
  </buttongroups>
 </ui>

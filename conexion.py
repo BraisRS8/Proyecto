@@ -104,37 +104,12 @@ class Conexion():
             print("Error mostrar clientes: ", query.lastError().text())
 
 
-    # def modifCli(codigo, newdata):
-    #        ''''
-    #        modulo para modificar cliente. se llama desde fichero clientes.py
-    #        :return None
-    #        '''
-    #        query = QtSql.QSqlQuery()
-    #        codigo = int(codigo)
-    #        print(newdata)
-    #        query.prepare('update clientes set dni=:dni, apellidos=:apellidos, nombre=:nombre, fechalta=:fechalta, '
-    #                      'direccion=:direccion, provincia=:provincia, sexo=:sexo, formaspago=:formaspago where codigo=:codigo')
-    #        query.bindValue(':codigo', int(codigo))
-    #        query.bindValue(':dni', str(newdata[0]))
-    #        query.bindValue(':apellidos', str(newdata[1]))
-    #        query.bindValue(':nombre', str(newdata[2]))
-    #        query.bindValue(':fechalta', str(newdata[3]))
-    #        query.bindValue(':direccion', str(newdata[4]))
-    #        query.bindValue(':provincia', str(newdata[5]))
-    #        query.bindValue(':sexo', str(newdata[6]))
-    #        query.bindValue(':formaspago', str(newdata[7]))
-    #        if query.exec_():
-    #            print('Cliente modificado')
-    #            var.ui.lblstatus.setText('Cliente con dni '+ str(newdata[0]) + ' modificado')
-    #        else:
-    #            print("Error modificar cliente: ", query.lastError().text())
-
     def modifCli(codigo, newdata):
         query = QtSql.QSqlQuery()
         codigo = int(codigo)
         print(codigo, newdata)
         query.prepare('update clientes set dni=:dni, apellidos=:apellidos, nombre=:nombre, fechalta=:fechaAlta,'
-                      'direccion=:direccion, provincia:=provincia, sexo=:sexo, formaspago=:formasPago where codigo=:codigo')
+                      'direccion=:direccion, provincia = :provincia, sexo=:sexo, formaspago=:formasPago where codigo=:codigo')
         query.bindValue(':codigo', int(codigo))
         query.bindValue(':dni', str(newdata[0]))
         query.bindValue(':apellidos', str(newdata[1]))
@@ -149,6 +124,43 @@ class Conexion():
             var.ui.lblstatus.setText('Cliente con dni '+str(newdata[0])+' modificado')
         else:
             print('Error modificar cliente: ', query.lastError().text())
+
+    def buscaCli(dni):
+
+        '''
+        selecciona un cliente a partir de un dni
+        :return:
+        '''
+
+        query = QtSql.QSqlQuery()
+        cliente = query.prepare('select * from clientes where dni = :dni')
+        query.bindValue(':dni', dni)
+
+        return cliente
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # class Conexion():
 #     HOST = 'localhost'

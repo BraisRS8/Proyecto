@@ -217,3 +217,31 @@ class Clientes():
 
         except Exception as error:
             print('Error cargar clientes: %s ' % str(error))
+
+    def reloadCli(self):
+        "modulo para el boton de recargar la lista de clientes"
+
+        try:
+            Clientes.limpiarCli()
+            conexion.Conexion.mostrarClientes(None)
+            var.ui.lblstatus.setText('Recarga de la lista finalizado con exito')
+        except Exception as error:
+            print("Error en reload: % " % str(error))
+
+    def searchCli(self):
+        '''
+        modulo para el boton de buscar cliente
+        :return:
+        '''
+
+        try:
+            dni = var.ui.editDni.text()
+            cliente = conexion.Conexion.buscaCli(dni)
+
+            if cliente == False:
+                var.ui.lblstatus.setText("No se ha encontrado el cliente con ese DNI")
+            else:
+
+
+        except Exception as error:
+            print("Error en la busqueda: % " % str(error))
