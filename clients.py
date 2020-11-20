@@ -127,6 +127,8 @@ class Clientes():
             newcli.append(var.sex)
             var.pay2 = Clientes.selPago()
             newcli.append(var.pay2)
+            valor=var.ui.spinEdad.value()
+            newcli.append(valor)
             if client:
             #comprobarmos que no esté vacío lo principal
             #aquí empieza como trabajar con la TableWidget
@@ -161,6 +163,7 @@ class Clientes():
             var.ui.cmbProv.setCurrentIndex(0)
             var.ui.lblValidar.setText('')
             var.ui.lblCodcli.setText('')
+            var.ui.spinEdad.setValue(18)
         except Exception as error:
             print('Error limpiar widgets: %s ' % str(error))
 
@@ -211,6 +214,8 @@ class Clientes():
             newdata.append(var.sex)
             var.pay = Clientes.selPago()
             newdata.append(var.pay)
+            valor=var.ui.spinEdad.value()
+            newdata.append(valor)
             cod = var.ui.lblCodcli.text()
             conexion.Conexion.modifCli(cod, newdata)
             conexion.Conexion.mostrarClientes(self)
@@ -241,7 +246,7 @@ class Clientes():
             if cliente == False:
                 var.ui.lblstatus.setText("No se ha encontrado el cliente con ese DNI")
             else:
-
+                Clientes.cargarCli()
 
         except Exception as error:
             print("Error en la busqueda: % " % str(error))

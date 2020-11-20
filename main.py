@@ -66,6 +66,15 @@ class Main(QtWidgets.QMainWindow):
         events.Eventos.cargarProv()
         var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
         var.ui.lblstatus.setText('Bienvenido a 2º DAM    Fecha: '+str(datetime.today().strftime('%d-%m-%Y')))
+
+        '''
+        Configuracion del spin de edad
+        '''
+        var.ui.spinEdad.setMinimum(18)
+        var.ui.spinEdad.setMaximum(150)
+        var.ui.spinEdad.setValue(18)
+
+
         '''
         módulos conexion base datos
         '''
