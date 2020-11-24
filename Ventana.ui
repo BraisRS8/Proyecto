@@ -1035,7 +1035,7 @@ background-color: rgb(242, 231, 255);</string>
       </property>
       <property name="styleSheet">
        <string notr="true">color:rgb(255, 0, 0);
-background-color: rgb(220, 255, 255);</string>
+background-color:rgb(255, 255, 231)</string>
       </property>
       <property name="text">
        <string>TextLabel</string>
@@ -1065,6 +1065,26 @@ background-color: rgb(220, 255, 255);</string>
    <addaction name="menuArchivo"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>32</width>
+     <height>32</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>true</bool>
+   </attribute>
+   <addaction name="actionBackup"/>
+   <addaction name="separator"/>
+   <addaction name="actionSalirToolbar"/>
+  </widget>
   <action name="actionSalir">
    <property name="text">
     <string>Salir</string>
@@ -1073,8 +1093,36 @@ background-color: rgb(220, 255, 255);</string>
     <string>Ctrl+S</string>
    </property>
   </action>
+  <action name="actionBackup">
+   <property name="icon">
+    <iconset>
+     <activeon>:/backup/backup.png</activeon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Backup</string>
+   </property>
+   <property name="toolTip">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/backup/backup.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+B</string>
+   </property>
+  </action>
+  <action name="actionSalirToolbar">
+   <property name="icon">
+    <iconset>
+     <activeon>img/salirr.png</activeon>
+    </iconset>
+   </property>
+   <property name="text">
+    <string>Salir</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="img/toolbarbackup.qrc"/>
+ </resources>
  <connections/>
  <buttongroups>
   <buttongroup name="grpbtnPay">

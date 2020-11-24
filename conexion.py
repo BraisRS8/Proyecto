@@ -27,7 +27,7 @@ class Conexion():
         query.bindValue(':sexo', str(cliente[6]))
         # pagos = ' '.join(cliente[7]) si quiesesemos un texto, pero nos viene mejor meterlo como una lista
         query.bindValue(':formaspago', str(cliente[7]))
-        query.bindValue(':edad', str(cliente[8]))
+        query.bindValue(':edad', int(cliente[8]))
         if query.exec_():
             print("Inserción Correcta")
             var.ui.lblstatus.setText('Alta Cliente con dni ' + str(cliente[0]))
@@ -47,6 +47,7 @@ class Conexion():
         if query.exec_():
             while query.next():
                 var.ui.lblCodcli.setText(str(query.value(0)))
+
                 var.ui.editClialta.setText(query.value(4))
                 var.ui.editDir.setText(query.value(5))
                 var.ui.cmbProv.setCurrentText(str(query.value(6)))
@@ -64,7 +65,7 @@ class Conexion():
                     var.chkpago[1].setChecked(True)
                 if 'Transferencia' in query.value(8):
                     var.chkpago[2].setChecked(True)
-                var.ui.spinEdad.value(str(query.value(9)))
+                var.ui.spinEdad.setValue(int(query.value(9)))
     def mostrarClientes(self):
         '''
         Carga los datos principales del cliente en la tabla
@@ -120,7 +121,7 @@ class Conexion():
         query.bindValue(':provincia', str(newdata[5]))
         query.bindValue(':sexo', str(newdata[6]))
         query.bindValue(':formasPago', str(newdata[7]))
-        query.bindValue(':edad', str(newdata[8]))
+        query.bindValue(':edad', int(newdata[8]))
         if query.exec_():
             print('Cliente modificado')
             var.ui.lblstatus.setText('Cliente con dni '+str(newdata[0])+' modificado')

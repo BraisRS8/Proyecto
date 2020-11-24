@@ -55,6 +55,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCliente)
         var.ui.btnReloadCli.clicked.connect(clients.Clientes.reloadCli)
         var.ui.btnSearchCli.clicked.connect(clients.Clientes.searchCli)
+        #var.ui.actionBackup.triggered.connect(events.Eventos.backup)
+        var.ui.actionSalirToolbar.triggered.connect(events.Eventos.Salir)
         for i in var.rbtsex:
             i.toggled.connect(clients.Clientes.selSexo)
         for i in var.chkpago:
