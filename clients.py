@@ -1,7 +1,7 @@
 import conexion
 import var
 from Ventana import *
-
+from datetime import datetime
 class Clientes():
     '''
     eventos necesarios formulario clientes
@@ -229,7 +229,7 @@ class Clientes():
         try:
             Clientes.limpiarCli()
             conexion.Conexion.mostrarClientes(None)
-            var.ui.lblstatus.setText('Recarga de la lista finalizado con exito')
+            var.ui.lblstatus.setText('Recarga de la lista finalizado con exito Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y')))
         except Exception as error:
             print("Error en reload: % " % str(error))
 
@@ -241,12 +241,6 @@ class Clientes():
 
         try:
             dni = var.ui.editDni.text()
-            cliente = conexion.Conexion.buscaCli(dni)
-
-            if cliente == False:
-                var.ui.lblstatus.setText("No se ha encontrado el cliente con ese DNI")
-            else:
-                Clientes.cargarCli()
-
+            conexion.Conexion.buscaCli(dni)
         except Exception as error:
             print("Error en la busqueda: % " % str(error))

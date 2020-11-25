@@ -1,6 +1,7 @@
 from PyQt5 import QtWidgets, QtSql
 import pymongo, var
 from Ventana import *
+from datetime import datetime
 
 class Conexion():
     def db_connect(filename):
@@ -30,7 +31,7 @@ class Conexion():
         query.bindValue(':edad', int(cliente[8]))
         if query.exec_():
             print("Inserción Correcta")
-            var.ui.lblstatus.setText('Alta Cliente con dni ' + str(cliente[0]))
+            var.ui.lblstatus.setText('Alta Cliente con dni ' + str(cliente[0] + '       Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y'))))
             Conexion.mostrarClientes()
         else:
             print("Error: ", query.lastError().text())
@@ -101,7 +102,7 @@ class Conexion():
         query.bindValue(':dni', dni)
         if query.exec_():
             print('Baja cliente')
-            var.ui.lblstatus.setText('Cliente con dni '+ dni + ' dado de baja')
+            var.ui.lblstatus.setText('Cliente con dni '+ dni + ' dado de baja      Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y')))
         else:
             print("Error mostrar clientes: ", query.lastError().text())
 
@@ -124,7 +125,7 @@ class Conexion():
         query.bindValue(':edad', int(newdata[8]))
         if query.exec_():
             print('Cliente modificado')
-            var.ui.lblstatus.setText('Cliente con dni '+str(newdata[0])+' modificado')
+            var.ui.lblstatus.setText('Cliente con dni '+str(newdata[0])+' modificado        Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y')))
         else:
             print('Error modificar cliente: ', query.lastError().text())
 
@@ -135,11 +136,39 @@ class Conexion():
         :return:
         '''
 
+        index = 0
         query = QtSql.QSqlQuery()
-        cliente = query.prepare('select * from clientes where dni = :dni')
+        query.prepare('select * from clientes where dni = :dni')
         query.bindValue(':dni', dni)
+        if query.exec_():
+            while query.next():
+                var.ui.lblCodcli.setText(str(query.value(0)))
+                var.ui.editApel.setText(str(query.value(1)))
+                var.ui.editNome.setText(str(query.value(2)))
+                var.ui.editClialta.setText(query.value(4))
+                var.ui.editDir.setText(query.value(5))
+                var.ui.cmbProv.setCurrentText(str(query.value(6)))
+                if str(query.value(7)) == 'Mujer':
+                    var.ui.rbtFem.setChecked(True)
+                    var.ui.rbtMasc.setChecked(False)
+                else:
+                    var.ui.rbtMasc.setChecked(True)
+                    var.ui.rbtFem.setChecked(False)
+                for data in var.chkpago:
+                    data.setChecked(False)
+                if 'Efectivo' in query.value(8):
+                    var.chkpago[0].setChecked(True)
+                if 'Tarjeta' in query.value(8):
+                    var.chkpago[1].setChecked(True)
+                if 'Transferencia' in query.value(8):
+                    var.chkpago[2].setChecked(True)
+                var.ui.spinEdad.setValue(query.value(9))
 
-        return cliente
+                var.ui.tableCli.setRowCount(index + 1)
+                # voy metiendo los datos en cada celda de la fila
+                var.ui.tableCli.setItem(index, 0, QtWidgets.QTableWidgetItem(str(query.value(1))))
+                var.ui.tableCli.setItem(index, 1, QtWidgets.QTableWidgetItem(str(query.value(2))))
+                var.ui.tableCli.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query.value(3))))
 
 
 

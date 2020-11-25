@@ -34,7 +34,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.setupUi(self)
         var.dlgsalir = DialogSalir()
         var.dlgcalendar = DialogCalendar()
-
+        var.filedlgabrir = FileDialogAbrir()
         '''
         colección de datos
         '''
@@ -57,6 +57,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnSearchCli.clicked.connect(clients.Clientes.searchCli)
         #var.ui.actionBackup.triggered.connect(events.Eventos.backup)
         var.ui.actionSalirToolbar.triggered.connect(events.Eventos.Salir)
+        var.ui.toolbarAbrirDir.triggered.connect(events.Eventos.AbrirDir)
         for i in var.rbtsex:
             i.toggled.connect(clients.Clientes.selSexo)
         for i in var.chkpago:
@@ -67,7 +68,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         events.Eventos.cargarProv()
         var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
-        var.ui.lblstatus.setText('Bienvenido a 2º DAM    Fecha: '+str(datetime.today().strftime('%d-%m-%Y')))
+        var.ui.lblstatus.setText('Bienvenido a 2º DAM    Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y')))
 
         '''
         Configuracion del spin de edad
@@ -88,6 +89,10 @@ class Main(QtWidgets.QMainWindow):
     def closeEvent(self, event):
         if event:
             events.Eventos.Salir(event)
+
+class FileDialogAbrir(QtWidgets.QFileDialog):
+    def __init__(self):
+        super(FileDialogAbrir, self).__init__()
 
 
 if __name__ == '__main__':
