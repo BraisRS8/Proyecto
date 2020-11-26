@@ -1061,6 +1061,8 @@ background-color:rgb(255, 255, 231)</string>
      <string>Archivo</string>
     </property>
     <addaction name="toolbarAbrirDir"/>
+    <addaction name="toolbarPrint"/>
+    <addaction name="separator"/>
     <addaction name="actionSalir"/>
    </widget>
    <addaction name="menuArchivo"/>
@@ -1083,6 +1085,8 @@ background-color:rgb(255, 255, 231)</string>
     <bool>false</bool>
    </attribute>
    <addaction name="toolbarAbrirDir"/>
+   <addaction name="separator"/>
+   <addaction name="toolbarPrint"/>
    <addaction name="separator"/>
    <addaction name="actionBackup"/>
    <addaction name="separator"/>
@@ -1135,9 +1139,17 @@ background-color:rgb(255, 255, 231)</string>
     <string>Ctrl+A</string>
    </property>
   </action>
-  <action name="actionAbrir">
+  <action name="toolbarPrint">
+   <property name="icon">
+    <iconset>
+     <activeon>img/impresora.png</activeon>
+    </iconset>
+   </property>
    <property name="text">
-    <string>Abrir</string>
+    <string>Imprimir</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
    </property>
   </action>
  </widget>

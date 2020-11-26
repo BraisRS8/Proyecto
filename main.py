@@ -3,7 +3,7 @@ from vensalir import *
 from vencalendar import *
 from datetime import datetime
 import sys, var, events, clients, conexion
-
+from PyQt5.QtPrintSupport import QPrintDialog, QPrinter
 
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):
@@ -35,6 +35,7 @@ class Main(QtWidgets.QMainWindow):
         var.dlgsalir = DialogSalir()
         var.dlgcalendar = DialogCalendar()
         var.filedlgabrir = FileDialogAbrir()
+        var.printdlgabrir = PrintDialogAbrir()
         '''
         colección de datos
         '''
@@ -58,6 +59,7 @@ class Main(QtWidgets.QMainWindow):
         #var.ui.actionBackup.triggered.connect(events.Eventos.backup)
         var.ui.actionSalirToolbar.triggered.connect(events.Eventos.Salir)
         var.ui.toolbarAbrirDir.triggered.connect(events.Eventos.AbrirDir)
+        var.ui.toolbarPrint.triggered.connect(events.Eventos.Print)
         for i in var.rbtsex:
             i.toggled.connect(clients.Clientes.selSexo)
         for i in var.chkpago:
@@ -93,7 +95,13 @@ class Main(QtWidgets.QMainWindow):
 class FileDialogAbrir(QtWidgets.QFileDialog):
     def __init__(self):
         super(FileDialogAbrir, self).__init__()
+        self.setWindowTitle('Abrir archivo')
+        self.setModal(True)
 
+class PrintDialogAbrir(QPrintDialog):
+    def __init__(self):
+        super(PrintDialogAbrir, self).__init__()
+        self.setModal(True)
 
 if __name__ == '__main__':
     app = QtWidgets.QApplication([])

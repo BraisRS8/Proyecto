@@ -40,3 +40,9 @@ class Eventos():
             var.filedlgabrir.show()
         except Exception as error:
             print('Error %s' % str(error))
+
+    def Print(self):
+        try:
+            var.printdlgabrir.show()
+        except Exception as error:
+            print('Error %s' % str(error))
