@@ -14,8 +14,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Calendar(object):
     def setupUi(self, Calendar):
         Calendar.setObjectName("Calendar")
-        Calendar.setWindowModality(QtCore.Qt.WindowModal)
+        Calendar.setWindowModality(QtCore.Qt.NonModal)
         Calendar.resize(421, 300)
+        Calendar.setModal(False)
         self.calendar = QtWidgets.QCalendarWidget(Calendar)
         self.calendar.setGeometry(QtCore.QRect(0, 0, 421, 301))
         self.calendar.setObjectName("calendar")

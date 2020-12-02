@@ -321,7 +321,7 @@ class Ui_VenPrincipal(object):
         self.grpbtnPay = QtWidgets.QButtonGroup(VenPrincipal)
         self.grpbtnPay.setObjectName("grpbtnPay")
         self.grpbtnPay.setExclusive(False)
-        self.grpbtnPay.addButton(self.chkTrans)
+
         self.gridFormuSM.addWidget(self.chkTrans, 0, 9, 1, 1)
         self.chkTar = QtWidgets.QCheckBox(self.panelCli)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
@@ -334,7 +334,7 @@ class Ui_VenPrincipal(object):
         font.setWeight(50)
         self.chkTar.setFont(font)
         self.chkTar.setObjectName("chkTar")
-        self.grpbtnPay.addButton(self.chkTar)
+
         self.gridFormuSM.addWidget(self.chkTar, 0, 8, 1, 1)
         spacerItem5 = QtWidgets.QSpacerItem(200, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
         self.gridFormuSM.addItem(spacerItem5, 0, 5, 1, 1)
@@ -401,6 +401,8 @@ class Ui_VenPrincipal(object):
         self.chkEfec.setFont(font)
         self.chkEfec.setObjectName("chkEfec")
         self.grpbtnPay.addButton(self.chkEfec)
+        self.grpbtnPay.addButton(self.chkTar)
+        self.grpbtnPay.addButton(self.chkTrans)
         self.gridFormuSM.addWidget(self.chkEfec, 0, 7, 1, 1)
         self.spinEdad = QtWidgets.QSpinBox(self.panelCli)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)

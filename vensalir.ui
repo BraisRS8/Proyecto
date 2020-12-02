@@ -16,6 +16,9 @@
   <property name="windowTitle">
    <string>Desea salir?</string>
   </property>
+  <property name="modal">
+   <bool>false</bool>
+  </property>
   <widget class="QDialogButtonBox" name="btnBox">
    <property name="geometry">
     <rect>

@@ -32,7 +32,7 @@ class Conexion():
         if query.exec_():
             print("Inserción Correcta")
             var.ui.lblstatus.setText('Alta Cliente con dni ' + str(cliente[0] + '       Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y'))))
-            Conexion.mostrarClientes()
+            Conexion.mostrarClientes(super)
         else:
             print("Error: ", query.lastError().text())
 

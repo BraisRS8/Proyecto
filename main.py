@@ -1,9 +1,13 @@
 from Ventana import *
 from vensalir import *
 from vencalendar import *
+from venconf import *
 from datetime import datetime
-import sys, var, events, clients, conexion
-from PyQt5.QtPrintSupport import QPrintDialog, QPrinter
+import sys, var, events, clients, conexion, locale
+from PyQt5.QtPrintSupport import QPrintDialog
+
+
+locale.setlocale(locale.LC_ALL,'es-ES')
 
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):
@@ -11,9 +15,7 @@ class DialogSalir(QtWidgets.QDialog):
         var.dlgsalir = Ui_venSalir()
         var.dlgsalir.setupUi(self)
         var.dlgsalir.btnBox.button(QtWidgets.QDialogButtonBox.Yes).clicked.connect(events.Eventos.Salir)
-        # var.dlgsalir.btnBoxSalir.button(QtWidgets.QDialogButtonBox.No).clicked.connect(events.Eventos.closeSalir)
-        # no es neceasario no quiero que haga nada
-
+        self.setModal(True)
 
 class DialogCalendar(QtWidgets.QDialog):
     def __init__(self):
@@ -25,7 +27,15 @@ class DialogCalendar(QtWidgets.QDialog):
         anoactual = datetime.now().year
         var.dlgcalendar.calendar.setSelectedDate((QtCore.QDate(anoactual, mesactual, diaactual)))
         var.dlgcalendar.calendar.clicked.connect(clients.Clientes.cargarFecha)
+        self.setModal(True)
 
+class DialogConf(QtWidgets.QDialog):
+    def __init__(self):
+        super(DialogConf, self).__init__()
+        var.dlgconf = Ui_venconf()
+        var.dlgconf.setupUi(self)
+        var.dlgconf.btnBox.button(QtWidgets.QDialogButtonBox.Yes).clicked.connect(clients.Clientes.bajaCliente)
+        self.setModal(True)
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
@@ -36,6 +46,7 @@ class Main(QtWidgets.QMainWindow):
         var.dlgcalendar = DialogCalendar()
         var.filedlgabrir = FileDialogAbrir()
         var.printdlgabrir = PrintDialogAbrir()
+        var.dlgconf = DialogConf()
         '''
         colección de datos
         '''
@@ -46,13 +57,14 @@ class Main(QtWidgets.QMainWindow):
         estamos conectando el código con la interfaz gráfico
         botones formulario cliente
         '''
+
         var.ui.btnSalir.clicked.connect(events.Eventos.Salir)
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
         var.ui.editDni.editingFinished.connect(lambda: clients.Clientes.validoDni())
         var.ui.btnCalendar.clicked.connect(clients.Clientes.abrirCalendar)
         var.ui.btnAltaCli.clicked.connect(clients.Clientes.altaCliente)
         var.ui.btnLimpiarCli.clicked.connect(clients.Clientes.limpiarCli)
-        var.ui.btnBajaCli.clicked.connect(clients.Clientes.bajaCliente)
+        var.ui.btnBajaCli.clicked.connect(events.Eventos.Conf)
         var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCliente)
         var.ui.btnReloadCli.clicked.connect(clients.Clientes.reloadCli)
         var.ui.btnSearchCli.clicked.connect(clients.Clientes.searchCli)

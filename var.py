@@ -3,6 +3,7 @@ global rbtsex
 global chkpago
 global dlgsalir
 global dlgcalendar
+global dlgconf
 global sex
 pay = []
 pay2 = []

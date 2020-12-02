@@ -144,7 +144,7 @@ class Clientes():
                 print('Faltan Datos')
             #Clientes.limpiarCli()
         except Exception as error:
-            print('Error cargar fecha lo : %s ' % str(error))
+            print('Error alta : %s ' % str(error))
 
     def limpiarCli():
         '''

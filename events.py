@@ -1,4 +1,5 @@
 import sys, var
+from clients import *
 
 class Eventos():
 
@@ -11,7 +12,7 @@ class Eventos():
                 sys.exit()
             else:
                 var.dlgsalir.hide()
-                event.ignore()
+
 
         except Exception as error:
             print('Error %s' % str(error))
@@ -44,5 +45,13 @@ class Eventos():
     def Print(self):
         try:
             var.printdlgabrir.show()
+        except Exception as error:
+            print('Error %s' % str(error))
+
+    def Conf(event):
+
+        try:
+            var.dlgconf.show()
+
         except Exception as error:
             print('Error %s' % str(error))
