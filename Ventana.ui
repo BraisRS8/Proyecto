@@ -1063,7 +1063,7 @@ background-color:rgb(255, 255, 231)</string>
     <addaction name="toolbarAbrirDir"/>
     <addaction name="toolbarPrint"/>
     <addaction name="separator"/>
-    <addaction name="actionSalir"/>
+    <addaction name="actionSalirToolbar"/>
    </widget>
    <addaction name="menuArchivo"/>
   </widget>
@@ -1085,9 +1085,7 @@ background-color:rgb(255, 255, 231)</string>
     <bool>false</bool>
    </attribute>
    <addaction name="toolbarAbrirDir"/>
-   <addaction name="separator"/>
    <addaction name="toolbarPrint"/>
-   <addaction name="separator"/>
    <addaction name="actionBackup"/>
    <addaction name="separator"/>
    <addaction name="actionSalirToolbar"/>
@@ -1103,14 +1101,13 @@ background-color:rgb(255, 255, 231)</string>
   <action name="actionBackup">
    <property name="icon">
     <iconset>
-     <activeon>:/backup/backup.png</activeon>
-    </iconset>
+     <normaloff>img/restaurar.png</normaloff>img/restaurar.png</iconset>
    </property>
    <property name="text">
     <string>Backup</string>
    </property>
    <property name="toolTip">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/backup/backup.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>Backup</string>
    </property>
    <property name="shortcut">
     <string>Alt+B</string>
@@ -1124,6 +1121,9 @@ background-color:rgb(255, 255, 231)</string>
    </property>
    <property name="text">
     <string>Salir</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="toolbarAbrirDir">

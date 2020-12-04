@@ -82,7 +82,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         events.Eventos.cargarProv()
         var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
-        var.ui.lblstatus.setText('Bienvenido a 2º DAM    Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y')))
+        var.ui.lblstatus.setText('Bienvenido a 2º DAM           Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y')))
 
         '''
         Configuracion del spin de edad
