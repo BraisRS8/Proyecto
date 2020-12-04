@@ -22,7 +22,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Proyecto</string>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
