@@ -19,6 +19,7 @@ class Conexion():
         query = QtSql.QSqlQuery()
         query.prepare('insert into clientes (dni, apellidos, nombre, fechalta, direccion, provincia, sexo, formaspago, edad)'
                     'VALUES (:dni, :apellidos, :nombre, :fechalta, :direccion, :provincia, :sexo, :formaspago, :edad)')
+        #El array empieza en posicion 0 siempre
         query.bindValue(':dni', str(cliente[0]))
         query.bindValue(':apellidos', str(cliente[1]))
         query.bindValue(':nombre', str(cliente[2]))
@@ -29,6 +30,7 @@ class Conexion():
         # pagos = ' '.join(cliente[7]) si quiesesemos un texto, pero nos viene mejor meterlo como una lista
         query.bindValue(':formaspago', str(cliente[7]))
         query.bindValue(':edad', int(cliente[8]))
+        #Si la query se ejecuta sin errores hace lo siguiente
         if query.exec_():
             print("Inserción Correcta")
             var.ui.lblstatus.setText('Alta Cliente con dni ' + str(cliente[0] + '       Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y'))))
@@ -48,7 +50,7 @@ class Conexion():
         if query.exec_():
             while query.next():
                 var.ui.lblCodcli.setText(str(query.value(0)))
-
+                #Se salta el 1 2 y 3 pq son los datos que ya estan cargados de antes dni nombre y apellidos
                 var.ui.editClialta.setText(query.value(4))
                 var.ui.editDir.setText(query.value(5))
                 var.ui.cmbProv.setCurrentText(str(query.value(6)))
@@ -58,6 +60,7 @@ class Conexion():
                 else:
                     var.ui.rbtMasc.setChecked(True)
                     var.ui.rbtFem.setChecked(False)
+                #Primero descheckea todos los pago y luego va comprobando cuales estan marcados
                 for data in var.chkpago:
                     data.setChecked(False)
                 if 'Efectivo' in query.value(8):
@@ -85,6 +88,7 @@ class Conexion():
                 # crea la fila
                 var.ui.tableCli.setRowCount(index+1)
                 #voy metiendo los datos en cada celda de la fila
+                #ESTO LO VA METIENDO EN (FILA,COLUMNA,CELDA) con el setItem
                 var.ui.tableCli.setItem(index,0, QtWidgets.QTableWidgetItem(dni))
                 var.ui.tableCli.setItem(index, 1, QtWidgets.QTableWidgetItem(apellidos))
                 var.ui.tableCli.setItem(index, 2, QtWidgets.QTableWidgetItem(nombre))
@@ -108,6 +112,7 @@ class Conexion():
 
 
     def modifCli(codigo, newdata):
+        #El codigo no se lo mete en el array porque se utiliza para que se guarde el array en esa posicion con el where de la query
         query = QtSql.QSqlQuery()
         codigo = int(codigo)
         print(codigo, newdata)

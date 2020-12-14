@@ -12,6 +12,7 @@ class Eventos():
                 sys.exit()
             else:
                 var.dlgsalir.hide()
+                event.ignore()
 
 
         except Exception as error:
@@ -19,6 +20,7 @@ class Eventos():
 
     def closeSalir(event):
         try:
+            var.dlgsalir.show()
             if var.dlgsalir.exec_():
                 print(event)
                 var.dlgsalir.hide()
