@@ -76,6 +76,9 @@ class Conexion():
         se ejecuta cuando lanzamos el programa, actualizamos, insertamos y borramos un cliente
         :return: None
         '''
+        #Fundamental para que quede bien cuando borres lo ultimo de la tabla se borre
+        while var.ui.tableCli.rowCount() > 0:
+            var.ui.tableCli.removeRow(0)
         index = 0
         query = QtSql.QSqlQuery()
         query.prepare('select dni, apellidos, nombre from clientes')
