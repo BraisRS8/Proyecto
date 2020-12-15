@@ -60,7 +60,7 @@ class Conexion():
                 else:
                     var.ui.rbtMasc.setChecked(True)
                     var.ui.rbtFem.setChecked(False)
-                #Primero descheckea todos los pago y luego va comprobando cuales estan marcados
+                #Primero descheckea todos los pago y luego va comprobando cuales estan en la base de datos
                 for data in var.chkpago:
                     data.setChecked(False)
                 if 'Efectivo' in query.value(8):
@@ -76,7 +76,7 @@ class Conexion():
         se ejecuta cuando lanzamos el programa, actualizamos, insertamos y borramos un cliente
         :return: None
         '''
-        #Fundamental para que quede bien cuando borres lo ultimo de la tabla se borre
+        #Fundamental para que se borre bien cuando quede solo una fila
         while var.ui.tableCli.rowCount() > 0:
             var.ui.tableCli.removeRow(0)
         index = 0

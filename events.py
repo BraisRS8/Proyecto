@@ -53,7 +53,8 @@ class Eventos():
     def Conf(event):
 
         try:
-            var.dlgconf.show()
+            if (var.ui.editDni.text() != ''):
+                var.dlgconf.show()
 
         except Exception as error:
             print('Error %s' % str(error))
