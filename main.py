@@ -6,7 +6,7 @@ from datetime import datetime
 import sys, var, events, clients, conexion, locale
 from PyQt5.QtPrintSupport import QPrintDialog
 
-
+#Esto es para que la fecha salga en español
 locale.setlocale(locale.LC_ALL,'es-ES')
 
 class DialogSalir(QtWidgets.QDialog):
@@ -72,6 +72,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionSalirToolbar.triggered.connect(events.Eventos.Salir)
         var.ui.toolbarAbrirDir.triggered.connect(events.Eventos.AbrirDir)
         var.ui.toolbarPrint.triggered.connect(events.Eventos.Print)
+
+        #esto es para hacer las selecciones de checkboxes o radiobuttons y comprobar si hay cambios
         for i in var.rbtsex:
             i.toggled.connect(clients.Clientes.selSexo)
         for i in var.chkpago:
@@ -79,8 +81,11 @@ class Main(QtWidgets.QMainWindow):
 
         var.ui.cmbProv.activated[str].connect(clients.Clientes.selProv)
         var.ui.tableCli.clicked.connect(clients.Clientes.cargarCli)
+        #Esto hace que en vez de seleccionar solo una celda seleccione toda la fila entera
         var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        #Esto carga los valores en el combobox siendo siempre el primero vacio que es la posicion 0 la predeterminada
         events.Eventos.cargarProv()
+        #Esto sirve para crear el rectangulo de abajo deltodo
         var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
         var.ui.lblstatus.setText('Bienvenido a 2º DAM           Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y')))
 

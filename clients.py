@@ -64,6 +64,7 @@ class Clientes():
         '''
         try:
             var.pay = []
+            #enumerate sirve para pillar el numero de botones(del grpbtnPay con el .buttons) y luego comprueba si esta marcado y la posicion
             for i, data in enumerate(var.ui.grpbtnPay.buttons()):
                     #agrupamos en QtDesigner los checkbox en un ButtonGroup
                 if data.isChecked() and i == 0:
@@ -116,10 +117,12 @@ class Clientes():
         try:
             newcli = [] #contiene todos los datos
             clitab = []  #será lo que carguemos en la tablas
+            #Esto son los edits solo que se guardan en un array para luego solo tener que coger el texto con .text()
             client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editClialta, var.ui.editDir]
             k = 0
             for i in client:
                 newcli.append(i.text())  #cargamos los valores que hay en los editline
+                #Esto es para guardar los 3 primeros datoe en clitab para luego mostrarlos en las tablas cuando se seleccione en este caso seria editDni, editApel, editNome
                 if k < 3:
                     clitab.append(i.text())
                     k += 1
@@ -127,11 +130,16 @@ class Clientes():
             newcli.append(var.sex)
             var.pay2 = Clientes.selPago()
             newcli.append(var.pay2)
+            #Como cojer el valor de un spin
             valor=var.ui.spinEdad.value()
             newcli.append(valor)
+            #Si cliente no esta vacio
             if client:
             #comprobarmos que no esté vacío lo principal
             #aquí empieza como trabajar con la TableWidget
+            #Inserta una fila vacia con el insertRow en el espacio 0
+            # y va metiendo los datos de clitab por orden aumentando la columna
+            #NO HACE FALTA CREO HACER ESTO PQ LUEGO VA A MOSTRAR CLIENTE QUE LO HACE DIRECTAMENTE GRACIAS A LA BASE DE DATOS
                 row = 0
                 column = 0
                 var.ui.tableCli.insertRow(row)
@@ -139,6 +147,8 @@ class Clientes():
                     cell = QtWidgets.QTableWidgetItem(registro)
                     var.ui.tableCli.setItem(row, column, cell)
                     column +=1
+                #Atencion a pasarle el array con el mismo orden de datos que esta en la base de datos
+                # para evitar compliaciones a la hora de meterle los valores a la base de datos
                 conexion.Conexion.altaCli(newcli)
             else:
                 print('Faltan Datos')
@@ -152,15 +162,16 @@ class Clientes():
         :return: none
         '''
         try:
+            #Coje los editText y con el for hace que se vacie el texto
             client = [var.ui.editDni, var.ui.editApel, var.ui.editNome, var.ui.editClialta, var.ui.editDir]
             for i in range(len(client)):
                 client[i].setText('')
-            var.ui.grpbtnSex.setExclusive(False)  #necesario para los radiobutton
+            var.ui.grpbtnSex.setExclusive(False)  #necesario solo para los radiobutton
             for dato in var.rbtsex:
                 dato.setChecked(False)
             for data in var.chkpago:
                 data.setChecked(False)
-            var.ui.cmbProv.setCurrentIndex(0)
+            var.ui.cmbProv.setCurrentIndex(0) #El index 0 es el vacio que es el predeterminado
             var.ui.lblValidar.setText('')
             var.ui.lblCodcli.setText('')
             var.ui.spinEdad.setValue(18)
@@ -176,9 +187,11 @@ class Clientes():
         try:
             fila = var.ui.tableCli.selectedItems()
             client = [ var.ui.editDni, var.ui.editApel, var.ui.editNome ]
+            #Esto sirve para guardar en el array de fila cada dato que esta seleccionado en la tabla
             if fila:
                 fila = [dato.text() for dato in fila]
             i = 0
+            #Esto creo que va poniendo cada valor en su editText
             for i, dato in enumerate(client):
                 dato.setText(fila[i])
             conexion.Conexion.cargarCliente()
@@ -191,6 +204,7 @@ class Clientes():
         :return:
         '''
         try:
+            #Coge el texto del dni en el editText
             dni = var.ui.editDni.text()
             conexion.Conexion.bajaCli(dni)
             conexion.Conexion.mostrarClientes(self)
