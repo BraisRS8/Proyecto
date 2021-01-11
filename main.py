@@ -1,3 +1,4 @@
+import printer
 from Ventana import *
 from venabout import *
 from vensalir import *
@@ -85,6 +86,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnAltaPro.clicked.connect(products.Productos.altaProducto)
         var.ui.btnModifPro.clicked.connect(products.Productos.modifProducto)
         var.ui.btnBajaPro.clicked.connect(products.Productos.bajaProducto)
+        var.ui.actionInforme.triggered.connect(printer.Printer.reportCli)
 
         #esto es para hacer las selecciones de checkboxes o radiobuttons y comprobar si hay cambios
         for i in var.rbtsex:
