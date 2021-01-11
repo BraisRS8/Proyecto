@@ -58,3 +58,9 @@ class Eventos():
 
         except Exception as error:
             print('Error %s' % str(error))
+
+    def About(self):
+        try:
+            var.dlgabout.show()
+        except Exception as error:
+            print('Error %s' % str(error))

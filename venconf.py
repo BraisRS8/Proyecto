@@ -61,5 +61,5 @@ class Ui_venconf(object):
 
     def retranslateUi(self, venconf):
         _translate = QtCore.QCoreApplication.translate
-        venconf.setWindowTitle(_translate("venconf", "Dialog"))
+        venconf.setWindowTitle(_translate("venconf", "Está seguro?"))
         self.lblmsgconf.setText(_translate("venconf", "¿Está seguro que desea borrar el usuario?"))

@@ -1,9 +1,10 @@
 from Ventana import *
+from venabout import *
 from vensalir import *
 from vencalendar import *
 from venconf import *
 from datetime import datetime
-import sys, var, events, clients, conexion, locale
+import sys, var, events, clients, conexion, locale, products
 from PyQt5.QtPrintSupport import QPrintDialog
 
 #Esto es para que la fecha salga en español
@@ -37,6 +38,13 @@ class DialogConf(QtWidgets.QDialog):
         var.dlgconf.btnBox.button(QtWidgets.QDialogButtonBox.Yes).clicked.connect(clients.Clientes.bajaCliente)
         self.setModal(True)
 
+class DialogAbout(QtWidgets.QDialog):
+    def __init__(self):
+        super(DialogAbout, self).__init__()
+        var.dlgabout = Ui_venabout()
+        var.dlgabout.setupUi(self)
+        self.setModal(True)
+
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
@@ -47,6 +55,7 @@ class Main(QtWidgets.QMainWindow):
         var.filedlgabrir = FileDialogAbrir()
         var.printdlgabrir = PrintDialogAbrir()
         var.dlgconf = DialogConf()
+        var.dlgabout = DialogAbout()
         '''
         colección de datos
         '''
@@ -59,6 +68,7 @@ class Main(QtWidgets.QMainWindow):
         '''
 
         var.ui.btnSalir.clicked.connect(events.Eventos.Salir)
+        var.ui.btnSalirPro.clicked.connect(events.Eventos.Salir)
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
         var.ui.editDni.editingFinished.connect(lambda: clients.Clientes.validoDni())
         var.ui.btnCalendar.clicked.connect(clients.Clientes.abrirCalendar)
@@ -68,10 +78,13 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnModifCli.clicked.connect(clients.Clientes.modifCliente)
         var.ui.btnReloadCli.clicked.connect(clients.Clientes.reloadCli)
         var.ui.btnSearchCli.clicked.connect(clients.Clientes.searchCli)
-        #var.ui.actionBackup.triggered.connect(events.Eventos.backup)
         var.ui.actionSalirToolbar.triggered.connect(events.Eventos.Salir)
         var.ui.toolbarAbrirDir.triggered.connect(events.Eventos.AbrirDir)
         var.ui.toolbarPrint.triggered.connect(events.Eventos.Print)
+        var.ui.actionAbout.triggered.connect(events.Eventos.About)
+        var.ui.btnAltaPro.clicked.connect(products.Productos.altaProducto)
+        var.ui.btnModifPro.clicked.connect(products.Productos.modifProducto)
+        var.ui.btnBajaPro.clicked.connect(products.Productos.bajaProducto)
 
         #esto es para hacer las selecciones de checkboxes o radiobuttons y comprobar si hay cambios
         for i in var.rbtsex:
@@ -88,6 +101,8 @@ class Main(QtWidgets.QMainWindow):
         #Esto sirve para crear el rectangulo de abajo deltodo
         var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
         var.ui.lblstatus.setText('Bienvenido a 2º DAM           Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y')))
+        var.ui.tablePro.clicked.connect(products.Productos.cargarPro)
+        var.ui.tablePro.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
 
         '''
         Configuracion del spin de edad
@@ -104,6 +119,7 @@ class Main(QtWidgets.QMainWindow):
         conexion.Conexion.db_connect(var.filebd)
         # conexion.Conexion()
         conexion.Conexion.mostrarClientes(self)
+        conexion.Conexion.mostrarProducto(self)
 
     def closeEvent(self, event):
         if event:

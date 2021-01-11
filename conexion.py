@@ -179,13 +179,81 @@ class Conexion():
                 var.ui.tableCli.setItem(index, 2, QtWidgets.QTableWidgetItem(str(query.value(3))))
 
 
+    def altaPro(producto):
+        query = QtSql.QSqlQuery()
+        query.prepare('insert into articulos (nombre, precio)'
+                    'VALUES (:nombre, :precio)')
+        #El array empieza en posicion 0 siempre
+        query.bindValue(':nombre', str(producto[0]))
+        query.bindValue(':precio', float(producto[1]))
+        #Si la query se ejecuta sin errores hace lo siguiente
+        if query.exec_():
+            print("Inserción Correcta")
+            var.ui.lblstatus.setText('Alta Producto con nombre ' + str(producto[0]) + '       Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y')))
+            Conexion.mostrarProducto(super)
+        else:
+            print("Error: ", query.lastError().text())
 
+    def mostrarProducto(self):
 
+        #Fundamental para que se borre bien cuando quede solo una fila
+        while var.ui.tablePro.rowCount() > 0:
+            var.ui.tablePro.removeRow(0)
+        index = 0
+        query = QtSql.QSqlQuery()
+        query.prepare('select nombre, precio from articulos')
+        if query.exec_():
+            while query.next():
+                #cojo los valores
+                nombre = query.value(0)
+                precio = query.value(1)
+                # crea la fila
+                var.ui.tablePro.setRowCount(index+1)
+                #voy metiendo los datos en cada celda de la fila
+                #ESTO LO VA METIENDO EN (FILA,COLUMNA,CELDA) con el setItem
+                var.ui.tablePro.setItem(index,0, QtWidgets.QTableWidgetItem(nombre))
+                var.ui.tablePro.setItem(index, 1, QtWidgets.QTableWidgetItem(str(precio)))
+                index += 1
+        else:
+            print("Error mostrar producto: ", query.lastError().text())
 
+    def cargarProducto():
+        nombre = var.ui.editNomPro.text()
+        query = QtSql.QSqlQuery()
+        query.prepare('select * from articulos where nombre = :nombre')
+        query.bindValue(':nombre', nombre)
+        if query.exec_():
+            while query.next():
+                var.ui.lblCodpro.setText(str(query.value(0)))
 
+        else:
+            print("Error cargar codigo producto: ", query.lastError().text())
 
+    def modifPro(codigo, newdata):
+        #El codigo no se lo mete en el array porque se utiliza para que se guarde el array en esa posicion con el where de la query
+        query = QtSql.QSqlQuery()
+        codigo = int(codigo)
+        print(codigo, newdata)
+        query.prepare('update articulos set nombre=:nombre, precio=:precio where codigo=:codigo')
+        query.bindValue(':codigo', int(codigo))
+        query.bindValue(':nombre', str(newdata[0]))
+        query.bindValue(':precio', str(newdata[1]))
+        if query.exec_():
+            print('Producto modificado')
+            var.ui.lblstatus.setText('Producto con nombre '+str(newdata[0])+' modificado        Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y')))
+        else:
+            print('Error modificar producto: ', query.lastError().text())
 
+    def bajaPro(nombre):
 
+        query = QtSql.QSqlQuery()
+        query.prepare('delete from articulos where nombre = :nombre')
+        query.bindValue(':nombre', nombre)
+        if query.exec_():
+            print('Baja producto')
+            var.ui.lblstatus.setText('Producto con nombre '+ nombre + ' dado de baja      Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y')))
+        else:
+            print("Error baja producto: ", query.lastError().text())
 
 
 

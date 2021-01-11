@@ -4,6 +4,7 @@ global chkpago
 global dlgsalir
 global dlgcalendar
 global dlgconf
+global dlgabout
 global sex
 pay = []
 pay2 = []
