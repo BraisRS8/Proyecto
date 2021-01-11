@@ -50,7 +50,7 @@ class Ui_venabout(object):
         self.lblLogo.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.lblLogo.setText("")
         self.lblLogo.setTextFormat(QtCore.Qt.AutoText)
-        self.lblLogo.setPixmap(QtGui.QPixmap("../Proyecto/img/logo.jpg"))
+        self.lblLogo.setPixmap(QtGui.QPixmap("img/logo.jpg"))
         self.lblLogo.setScaledContents(True)
         self.lblLogo.setAlignment(QtCore.Qt.AlignCenter)
         self.lblLogo.setObjectName("lblLogo")

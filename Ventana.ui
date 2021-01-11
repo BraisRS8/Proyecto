@@ -1279,6 +1279,7 @@ background-color: rgb(242, 231, 255);</string>
     <addaction name="toolbarPrint"/>
     <addaction name="separator"/>
     <addaction name="actionSalirToolbar"/>
+    <addaction name="actionInforme"/>
    </widget>
    <widget class="QMenu" name="menuAyuda">
     <property name="title">
@@ -1377,6 +1378,11 @@ background-color: rgb(242, 231, 255);</string>
   <action name="actionAbout">
    <property name="text">
     <string>About</string>
+   </property>
+  </action>
+  <action name="actionInforme">
+   <property name="text">
+    <string>Informe</string>
    </property>
   </action>
  </widget>
