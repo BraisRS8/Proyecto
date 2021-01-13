@@ -181,11 +181,12 @@ class Conexion():
 
     def altaPro(producto):
         query = QtSql.QSqlQuery()
-        query.prepare('insert into articulos (nombre, precio)'
-                    'VALUES (:nombre, :precio)')
+        query.prepare('insert into articulos (nombre, precio, stock)'
+                    'VALUES (:nombre, :precio, :stock)')
         #El array empieza en posicion 0 siempre
         query.bindValue(':nombre', str(producto[0]))
         query.bindValue(':precio', float(producto[1]))
+        query.bindValue(':stock', int(producto[2]))
         #Si la query se ejecuta sin errores hace lo siguiente
         if query.exec_():
             print("Inserción Correcta")
@@ -201,18 +202,20 @@ class Conexion():
             var.ui.tablePro.removeRow(0)
         index = 0
         query = QtSql.QSqlQuery()
-        query.prepare('select nombre, precio from articulos')
+        query.prepare('select nombre, precio, stock from articulos')
         if query.exec_():
             while query.next():
                 #cojo los valores
                 nombre = query.value(0)
                 precio = query.value(1)
+                stock = query.value(2)
                 # crea la fila
                 var.ui.tablePro.setRowCount(index+1)
                 #voy metiendo los datos en cada celda de la fila
                 #ESTO LO VA METIENDO EN (FILA,COLUMNA,CELDA) con el setItem
                 var.ui.tablePro.setItem(index,0, QtWidgets.QTableWidgetItem(nombre))
                 var.ui.tablePro.setItem(index, 1, QtWidgets.QTableWidgetItem(str(precio)))
+                var.ui.tablePro.setItem(index, 2, QtWidgets.QTableWidgetItem(str(stock)))
                 index += 1
         else:
             print("Error mostrar producto: ", query.lastError().text())
@@ -234,10 +237,11 @@ class Conexion():
         query = QtSql.QSqlQuery()
         codigo = int(codigo)
         print(codigo, newdata)
-        query.prepare('update articulos set nombre=:nombre, precio=:precio where codigo=:codigo')
+        query.prepare('update articulos set nombre=:nombre, precio=:precio, stock=:stock where codigo=:codigo')
         query.bindValue(':codigo', int(codigo))
         query.bindValue(':nombre', str(newdata[0]))
         query.bindValue(':precio', str(newdata[1]))
+        query.bindValue(':stock', str(newdata[2]))
         if query.exec_():
             print('Producto modificado')
             var.ui.lblstatus.setText('Producto con nombre '+str(newdata[0])+' modificado        Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y')))

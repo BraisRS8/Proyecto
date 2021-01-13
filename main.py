@@ -87,6 +87,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnModifPro.clicked.connect(products.Productos.modifProducto)
         var.ui.btnBajaPro.clicked.connect(products.Productos.bajaProducto)
         var.ui.actionInforme.triggered.connect(printer.Printer.reportCli)
+        var.ui.actionInforme_Productos.triggered.connect(printer.Printer.reportPro)
 
         #esto es para hacer las selecciones de checkboxes o radiobuttons y comprobar si hay cambios
         for i in var.rbtsex:

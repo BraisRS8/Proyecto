@@ -8,7 +8,7 @@ class Productos():
     def altaProducto(self):
         try:
             newpro = []
-            product = [var.ui.editNomPro, var.ui.editPrecio]
+            product = [var.ui.editNomPro, var.ui.editPrecio, var.ui.editStock]
             for i in product:
                 newpro.append(i.text())
             if product:
@@ -29,6 +29,7 @@ class Productos():
 
             var.ui.editNomPro.setText(str(fila[0]))
             var.ui.editPrecio.setText(fila[1])
+            var.ui.editStock.setText(fila[2])
             print(fila[1])
             var.ui.lblstatus.setText('Carga Producto realizada      Fecha: ' + str(datetime.today().strftime('%A, %d de %B de %Y')))
             conexion.Conexion.cargarProducto()
@@ -39,7 +40,7 @@ class Productos():
     def modifProducto(self):
         try:
             newdata = []
-            client = [var.ui.editNomPro, var.ui.editPrecio]
+            client = [var.ui.editNomPro, var.ui.editPrecio, var.ui.editStock]
             for i in client:
                 newdata.append(i.text())  # cargamos los valores que hay en los editline
             cod = var.ui.lblCodpro.text()
@@ -67,7 +68,7 @@ class Productos():
 
         try:
             #Coje los editText y con el for hace que se vacie el texto
-            client = [var.ui.editNomPro, var.ui.editPrecio]
+            client = [var.ui.editNomPro, var.ui.editPrecio, var.ui.editStock]
             for i in range(len(client)):
                 client[i].setText('')
             var.ui.lblCodpro.setText('')
