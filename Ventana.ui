@@ -1040,17 +1040,65 @@ background-color: rgb(242, 231, 255);</string>
        <layout class="QGridLayout" name="gridLayout_3">
         <item row="2" column="1">
          <layout class="QGridLayout" name="gridLayout_6">
-          <item row="0" column="1">
-           <widget class="QTableWidget" name="tableWidget"/>
-          </item>
           <item row="0" column="0">
-           <widget class="QTableWidget" name="tableWidget_2">
+           <widget class="QTableWidget" name="tableFac">
             <property name="maximumSize">
              <size>
               <width>200</width>
               <height>16777215</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <column>
+             <property name="text">
+              <string>Nº Factura</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Fecha</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item row="0" column="1">
+           <widget class="QTableWidget" name="tableArtFac">
+            <property name="font">
+             <font>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <column>
+             <property name="text">
+              <string>Codigo</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Articulo</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Cantidad</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Precio-Unidad</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>Subtotal</string>
+             </property>
+            </column>
            </widget>
           </item>
          </layout>
@@ -1071,7 +1119,7 @@ background-color: rgb(242, 231, 255);</string>
            </spacer>
           </item>
           <item row="0" column="0">
-           <widget class="QLabel" name="label_2">
+           <widget class="QLabel" name="lblNumFac">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -1084,14 +1132,14 @@ background-color: rgb(242, 231, 255);</string>
            </widget>
           </item>
           <item row="0" column="6">
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="btnFactura">
             <property name="text">
              <string>Factura</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLabel" name="label_5">
+           <widget class="QLabel" name="lblCodFac">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -1113,14 +1161,14 @@ background-color: rgb(242, 231, 255);</string>
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QLabel" name="label_4">
+           <widget class="QLabel" name="lblFecha_2">
             <property name="text">
              <string>Fecha:</string>
             </property>
            </widget>
           </item>
           <item row="0" column="4">
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="btnFecha">
             <property name="text">
              <string/>
             </property>
@@ -1137,7 +1185,7 @@ background-color: rgb(242, 231, 255);</string>
            </widget>
           </item>
           <item row="0" column="3">
-           <widget class="QLineEdit" name="lineEdit_3">
+           <widget class="QLineEdit" name="editFecha">
             <property name="maximumSize">
              <size>
               <width>200</width>
@@ -1150,7 +1198,7 @@ background-color: rgb(242, 231, 255);</string>
            </widget>
           </item>
           <item row="0" column="7">
-           <widget class="QPushButton" name="pushButton_3">
+           <widget class="QPushButton" name="btnAnular">
             <property name="text">
              <string>Anular</string>
             </property>
@@ -1177,7 +1225,7 @@ background-color: rgb(242, 231, 255);</string>
         <item row="1" column="1">
          <layout class="QGridLayout" name="gridLayout_5">
           <item row="0" column="5">
-           <widget class="QPushButton" name="pushButton_5">
+           <widget class="QPushButton" name="btnRecarga">
             <property name="text">
              <string/>
             </property>
@@ -1194,7 +1242,7 @@ background-color: rgb(242, 231, 255);</string>
            </widget>
           </item>
           <item row="0" column="4">
-           <widget class="QPushButton" name="pushButton_4">
+           <widget class="QPushButton" name="btnBuscar">
             <property name="text">
              <string/>
             </property>
@@ -1211,7 +1259,7 @@ background-color: rgb(242, 231, 255);</string>
            </widget>
           </item>
           <item row="0" column="7">
-           <widget class="QPushButton" name="pushButton_6">
+           <widget class="QPushButton" name="btnFactura2">
             <property name="text">
              <string/>
             </property>
@@ -1228,7 +1276,7 @@ background-color: rgb(242, 231, 255);</string>
            </widget>
           </item>
           <item row="0" column="8">
-           <widget class="QPushButton" name="pushButton_7">
+           <widget class="QPushButton" name="btnAnular2">
             <property name="text">
              <string/>
             </property>
@@ -1261,7 +1309,7 @@ background-color: rgb(242, 231, 255);</string>
            </spacer>
           </item>
           <item row="0" column="2">
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="editApellidoFac">
             <property name="minimumSize">
              <size>
               <width>500</width>
@@ -1280,7 +1328,7 @@ background-color: rgb(242, 231, 255);</string>
            </widget>
           </item>
           <item row="0" column="0">
-           <widget class="QLabel" name="label_3">
+           <widget class="QLabel" name="lblCliente">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -1299,7 +1347,7 @@ background-color: rgb(242, 231, 255);</string>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLineEdit" name="lineEdit_2">
+           <widget class="QLineEdit" name="editDniFac">
             <property name="maximumSize">
              <size>
               <width>150</width>
@@ -1332,7 +1380,7 @@ background-color: rgb(242, 231, 255);</string>
         <item row="5" column="1">
          <layout class="QGridLayout" name="gridLayout_8">
           <item row="2" column="1">
-           <widget class="QLabel" name="label_8">
+           <widget class="QLabel" name="lblT">
             <property name="text">
              <string>Total:</string>
             </property>
@@ -1342,7 +1390,7 @@ background-color: rgb(242, 231, 255);</string>
            </widget>
           </item>
           <item row="1" column="1">
-           <widget class="QLabel" name="label_7">
+           <widget class="QLabel" name="lblI">
             <property name="frameShadow">
              <enum>QFrame::Plain</enum>
             </property>
@@ -1371,28 +1419,28 @@ background-color: rgb(242, 231, 255);</string>
            </spacer>
           </item>
           <item row="0" column="3">
-           <widget class="QLabel" name="label_9">
+           <widget class="QLabel" name="lblEuros">
             <property name="text">
              <string>€</string>
             </property>
            </widget>
           </item>
           <item row="1" column="3">
-           <widget class="QLabel" name="label_10">
+           <widget class="QLabel" name="lblEuros_2">
             <property name="text">
              <string>€</string>
             </property>
            </widget>
           </item>
           <item row="2" column="3">
-           <widget class="QLabel" name="label_11">
+           <widget class="QLabel" name="lblEuros_3">
             <property name="text">
              <string>€</string>
             </property>
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLabel" name="label_6">
+           <widget class="QLabel" name="lbls">
             <property name="text">
              <string>Subtotal:</string>
             </property>
@@ -1402,7 +1450,7 @@ background-color: rgb(242, 231, 255);</string>
            </widget>
           </item>
           <item row="0" column="2">
-           <widget class="QLabel" name="label_12">
+           <widget class="QLabel" name="lblSubtotal">
             <property name="minimumSize">
              <size>
               <width>50</width>
@@ -1418,7 +1466,7 @@ background-color: rgb(242, 231, 255);</string>
            </widget>
           </item>
           <item row="1" column="2">
-           <widget class="QLabel" name="label_13">
+           <widget class="QLabel" name="lblIVA">
             <property name="minimumSize">
              <size>
               <width>50</width>
@@ -1434,7 +1482,7 @@ background-color: rgb(242, 231, 255);</string>
            </widget>
           </item>
           <item row="2" column="2">
-           <widget class="QLabel" name="label_14">
+           <widget class="QLabel" name="lblTotal">
             <property name="minimumSize">
              <size>
               <width>50</width>
@@ -1851,11 +1899,11 @@ background-color: rgb(242, 231, 255);</string>
  </resources>
  <connections/>
  <buttongroups>
-  <buttongroup name="grpbtnSex"/>
   <buttongroup name="grpbtnPay">
    <property name="exclusive">
     <bool>false</bool>
    </property>
   </buttongroup>
+  <buttongroup name="grpbtnSex"/>
  </buttongroups>
 </ui>
