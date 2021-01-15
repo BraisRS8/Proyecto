@@ -5,7 +5,7 @@ from vensalir import *
 from vencalendar import *
 from venconf import *
 from datetime import datetime
-import sys, var, events, clients, conexion, locale, products
+import sys, var, events, clients, conexion, locale, products, bills
 from PyQt5.QtPrintSupport import QPrintDialog
 
 #Esto es para que la fecha salga en español
@@ -29,6 +29,18 @@ class DialogCalendar(QtWidgets.QDialog):
         anoactual = datetime.now().year
         var.dlgcalendar.calendar.setSelectedDate((QtCore.QDate(anoactual, mesactual, diaactual)))
         var.dlgcalendar.calendar.clicked.connect(clients.Clientes.cargarFecha)
+        self.setModal(True)
+
+class DialogCalendar2(QtWidgets.QDialog):
+    def __init__(self):
+        super(DialogCalendar2, self).__init__()
+        var.dlgcalendar2 = Ui_Calendar()
+        var.dlgcalendar2.setupUi(self)
+        diaactual = datetime.now().day
+        mesactual = datetime.now().month
+        anoactual = datetime.now().year
+        var.dlgcalendar2.calendar.setSelectedDate((QtCore.QDate(anoactual, mesactual, diaactual)))
+        var.dlgcalendar2.calendar.clicked.connect(bills.Facturas.cargarFecha)
         self.setModal(True)
 
 class DialogConf(QtWidgets.QDialog):
@@ -57,6 +69,7 @@ class Main(QtWidgets.QMainWindow):
         var.printdlgabrir = PrintDialogAbrir()
         var.dlgconf = DialogConf()
         var.dlgabout = DialogAbout()
+        var.dlgcalendar2 = DialogCalendar2()
         '''
         colección de datos
         '''
@@ -73,6 +86,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionSalir.triggered.connect(events.Eventos.Salir)
         var.ui.editDni.editingFinished.connect(lambda: clients.Clientes.validoDni())
         var.ui.btnCalendar.clicked.connect(clients.Clientes.abrirCalendar)
+        var.ui.btnFecha.clicked.connect(bills.Facturas.abrirCalendar)
         var.ui.btnAltaCli.clicked.connect(clients.Clientes.altaCliente)
         var.ui.btnLimpiarCli.clicked.connect(clients.Clientes.limpiarCli)
         var.ui.btnBajaCli.clicked.connect(events.Eventos.Conf)

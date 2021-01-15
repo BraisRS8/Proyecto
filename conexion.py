@@ -50,6 +50,8 @@ class Conexion():
         if query.exec_():
             while query.next():
                 var.ui.lblCodcli.setText(str(query.value(0)))
+                var.ui.editDniFac.setText(str(query.value(1)))
+                var.ui.editApellidoFac.setText(str(query.value(2)))
                 #Se salta el 1 2 y 3 pq son los datos que ya estan cargados de antes dni nombre y apellidos
                 var.ui.editClialta.setText(query.value(4))
                 var.ui.editDir.setText(query.value(5))
@@ -151,8 +153,8 @@ class Conexion():
         if query.exec_():
             while query.next():
                 var.ui.lblCodcli.setText(str(query.value(0)))
-                var.ui.editApel.setText(str(query.value(1)))
-                var.ui.editNome.setText(str(query.value(2)))
+                var.ui.editApel.setText(str(query.value(2)))
+                var.ui.editNome.setText(str(query.value(3)))
                 var.ui.editClialta.setText(query.value(4))
                 var.ui.editDir.setText(query.value(5))
                 var.ui.cmbProv.setCurrentText(str(query.value(6)))

@@ -1259,7 +1259,7 @@ background-color: rgb(242, 231, 255);</string>
            </widget>
           </item>
           <item row="0" column="7">
-           <widget class="QPushButton" name="btnFactura2">
+           <widget class="QPushButton" name="btnAceptarArt">
             <property name="text">
              <string/>
             </property>
@@ -1276,7 +1276,7 @@ background-color: rgb(242, 231, 255);</string>
            </widget>
           </item>
           <item row="0" column="8">
-           <widget class="QPushButton" name="btnAnular2">
+           <widget class="QPushButton" name="btnBorrarArt">
             <property name="text">
              <string/>
             </property>

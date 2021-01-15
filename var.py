@@ -13,3 +13,4 @@ global DATABASE
 global filedlgabrir
 global printdlgabrir
 global rep
+global dlgcalendar2
