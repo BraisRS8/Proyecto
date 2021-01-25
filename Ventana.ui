@@ -1783,6 +1783,7 @@ background-color: rgb(242, 231, 255);</string>
     <addaction name="actionSalirToolbar"/>
     <addaction name="actionInforme"/>
     <addaction name="actionInforme_Productos"/>
+    <addaction name="actionInforme_Facturas"/>
    </widget>
    <widget class="QMenu" name="menuAyuda">
     <property name="title">
@@ -1891,6 +1892,11 @@ background-color: rgb(242, 231, 255);</string>
   <action name="actionInforme_Productos">
    <property name="text">
     <string>Informe Productos</string>
+   </property>
+  </action>
+  <action name="actionInforme_Facturas">
+   <property name="text">
+    <string>Informe Facturas</string>
    </property>
   </action>
  </widget>

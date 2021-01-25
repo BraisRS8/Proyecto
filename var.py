@@ -14,3 +14,11 @@ global filedlgabrir
 global printdlgabrir
 global rep
 global dlgcalendar2
+
+global cmbventa
+global subfac
+global iva
+global fac
+global articulo
+
+venta = []

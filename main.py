@@ -58,6 +58,11 @@ class DialogAbout(QtWidgets.QDialog):
         var.dlgabout.setupUi(self)
         self.setModal(True)
 
+class CmbVenta(QtWidgets.QComboBox):
+    def __init__(self):
+        super(CmbVenta, self).__init__()
+        var.cmbventa = QtWidgets.QComboBox()
+
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
         super(Main, self).__init__()
@@ -70,6 +75,7 @@ class Main(QtWidgets.QMainWindow):
         var.dlgconf = DialogConf()
         var.dlgabout = DialogAbout()
         var.dlgcalendar2 = DialogCalendar2()
+        var.cmbventa = QtWidgets.QComboBox()
         '''
         colección de datos
         '''
@@ -100,8 +106,19 @@ class Main(QtWidgets.QMainWindow):
         var.ui.btnAltaPro.clicked.connect(products.Productos.altaProducto)
         var.ui.btnModifPro.clicked.connect(products.Productos.modifProducto)
         var.ui.btnBajaPro.clicked.connect(products.Productos.bajaProducto)
+
+        #facturas
+        var.ui.btnFactura.clicked.connect(bills.Facturas.altaFactura)
+        var.ui.btnBuscar.clicked.connect(conexion.Conexion.mostrarFacturascli)
+        var.ui.btnRecarga.clicked.connect(conexion.Conexion.mostrarFacturas)
+        var.ui.btnAnular.clicked.connect(bills.Facturas.borrarFactura)
+        var.ui.btnAceptarArt.clicked.connect(bills.Facturas.procesoVenta)
+        var.ui.btnBorrarArt.clicked.connect(bills.Facturas.anularVenta)
+
+        #informes
         var.ui.actionInforme.triggered.connect(printer.Printer.reportCli)
         var.ui.actionInforme_Productos.triggered.connect(printer.Printer.reportPro)
+        var.ui.actionInforme_Facturas.triggered.connect(printer.Printer.reportFac)
 
         #esto es para hacer las selecciones de checkboxes o radiobuttons y comprobar si hay cambios
         for i in var.rbtsex:
@@ -120,6 +137,10 @@ class Main(QtWidgets.QMainWindow):
         var.ui.lblstatus.setText('Bienvenido a 2º DAM           Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y')))
         var.ui.tablePro.clicked.connect(products.Productos.cargarPro)
         var.ui.tablePro.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        var.ui.tableFac.clicked.connect(bills.Facturas.cargarFact)
+        var.ui.tableFac.clicked.connect(bills.Facturas.mostrarVentasfac)
+        var.ui.tableFac.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
+        var.ui.tableArtFac.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
 
         '''
         Configuracion del spin de edad
@@ -137,6 +158,8 @@ class Main(QtWidgets.QMainWindow):
         # conexion.Conexion()
         conexion.Conexion.mostrarClientes(self)
         conexion.Conexion.mostrarProducto(self)
+        conexion.Conexion.mostrarFacturas(self)
+        var.cmbventa = QtWidgets.QComboBox()
 
     def closeEvent(self, event):
         if event:
