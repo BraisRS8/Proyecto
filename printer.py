@@ -224,7 +224,7 @@ class Printer():
             var.rep.setFont('Helvetica', size=10)
             query = QtSql.QSqlQuery()
             query.prepare('select dni, fecha from facturas where codfactura = :codfactura')
-            query.bindValue(':codfac', int(codfac))
+            query.bindValue(':codfactura', int(codfac))
             if query.exec_():
                 while query.next():
                     dni = str(query.value(0))
@@ -250,7 +250,7 @@ class Printer():
             var.rep.setFont('Helvetica-Bold', size=12)
             var.rep.drawRightString(500, 160, 'Subtotal:   ' + "{0:.2f}".format(float(
                 var.ui.lblSubtotal.text())) + ' €')
-            var.rep.drawRightString(500, 140, 'IVA:     ' + "{0:.2f}".format(float(var.ui.lblIva.text())) + ' €')
+            var.rep.drawRightString(500, 140, 'IVA:     ' + "{0:.2f}".format(float(var.ui.lblIVA.text())) + ' €')
             var.rep.drawRightString(500, 115, 'Total Factura: ' + "{0:.2f}".format(float(
                 var.ui.lblTotal.text())) + ' €')
         except Exception as error:
@@ -273,10 +273,10 @@ class Printer():
         """
         try:
             textlistado = 'FACTURA'
-            var.rep = canvas.Canvas('informes/factura.pdf', pagesize=A4)
+            var.rep = canvas.Canvas('informes/factura.pdf')
             Printer.cabecera(self)
             Printer.pie(textlistado)
-            codfac = var.ui.lblNumFac.text()
+            codfac = var.ui.lblCodFac.text()
             Printer.cabecerafac(codfac)
             query = QtSql.QSqlQuery()
             query.prepare('select codventa, codarticventa, cantidad, precio from ventas where codfacventa = :codfac')
