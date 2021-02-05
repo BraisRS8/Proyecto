@@ -64,7 +64,7 @@ class Conexion():
         else:
             print("Error: ", query.lastError().text())
 
-    def cargarCliente(self):
+    def cargarCliente():
         """
 
         Modulo que imprime los datos de un cliente en base a su dni en los widgets
@@ -77,6 +77,7 @@ class Conexion():
         query = QtSql.QSqlQuery()
         query.prepare('select * from clientes where dni = :dni')
         query.bindValue(':dni', dni)
+        print("hola")
         if query.exec_():
             while query.next():
                 var.ui.lblCodcli.setText(str(query.value(0)))
@@ -552,7 +553,7 @@ class Conexion():
                 dato = [str(query.value(0)), str(query.value(1))]
         return dato
 
-    def altaVenta(self):
+    def altaVenta():
         """
 
         Modulo que añade lineas de venta en una factura creada
