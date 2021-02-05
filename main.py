@@ -13,6 +13,11 @@ locale.setlocale(locale.LC_ALL,'es-ES')
 
 class DialogSalir(QtWidgets.QDialog):
     def __init__(self):
+        """
+
+        Clase que instancia la ventana de aviso salir
+
+        """
         super(DialogSalir, self).__init__()
         var.dlgsalir = Ui_venSalir()
         var.dlgsalir.setupUi(self)
@@ -21,6 +26,11 @@ class DialogSalir(QtWidgets.QDialog):
 
 class DialogCalendar(QtWidgets.QDialog):
     def __init__(self):
+        """
+
+        Clase que instancia la ventana de calendario
+
+        """
         super(DialogCalendar, self).__init__()
         var.dlgcalendar = Ui_Calendar()
         var.dlgcalendar.setupUi(self)
@@ -33,6 +43,11 @@ class DialogCalendar(QtWidgets.QDialog):
 
 class DialogCalendar2(QtWidgets.QDialog):
     def __init__(self):
+        """
+
+        Clase que instancia la ventana de calendario
+
+        """
         super(DialogCalendar2, self).__init__()
         var.dlgcalendar2 = Ui_Calendar()
         var.dlgcalendar2.setupUi(self)
@@ -45,6 +60,11 @@ class DialogCalendar2(QtWidgets.QDialog):
 
 class DialogConf(QtWidgets.QDialog):
     def __init__(self):
+        """
+
+        Clase que instancia la ventana avisos
+
+        """
         super(DialogConf, self).__init__()
         var.dlgconf = Ui_venconf()
         var.dlgconf.setupUi(self)
@@ -52,6 +72,11 @@ class DialogConf(QtWidgets.QDialog):
         self.setModal(True)
 
 class DialogAbout(QtWidgets.QDialog):
+    """
+
+    Clase que instancia la ventana de informacion
+
+    """
     def __init__(self):
         super(DialogAbout, self).__init__()
         var.dlgabout = Ui_venabout()
@@ -65,7 +90,21 @@ class CmbVenta(QtWidgets.QComboBox):
 
 class Main(QtWidgets.QMainWindow):
     def __init__(self):
+        """
+
+        Clase main. Instancia todas las ventanas del programa.
+        Genera y conecta todos los eventos de los botonoes, tablas y otros widgets.
+        Cuando se lanza se conecta con la BBDD.
+        Cuando se lanza el programa carga todos los articulos, facturas y clientes de
+        la BBDD en las tablas correspondientes.
+
+        """
         super(Main, self).__init__()
+        """
+        
+        Instancia de ventanas auxiliares
+        
+        """
         var.ui = Ui_VenPrincipal()
         var.ui.setupUi(self)
         var.dlgsalir = DialogSalir()
@@ -84,7 +123,7 @@ class Main(QtWidgets.QMainWindow):
         '''
         conexion de eventos con los objetos
         estamos conectando el código con la interfaz gráfico
-        botones formulario cliente
+        botones formulario cliente, productos y facturas
         '''
 
         var.ui.btnSalir.clicked.connect(events.Eventos.Salir)
@@ -103,6 +142,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.toolbarAbrirDir.triggered.connect(events.Eventos.AbrirDir)
         var.ui.toolbarPrint.triggered.connect(events.Eventos.Print)
         var.ui.actionAbout.triggered.connect(events.Eventos.About)
+
+
         var.ui.btnAltaPro.clicked.connect(products.Productos.altaProducto)
         var.ui.btnModifPro.clicked.connect(products.Productos.modifProducto)
         var.ui.btnBajaPro.clicked.connect(products.Productos.bajaProducto)
@@ -131,7 +172,7 @@ class Main(QtWidgets.QMainWindow):
         #Esto hace que en vez de seleccionar solo una celda seleccione toda la fila entera
         var.ui.tableCli.setSelectionBehavior(QtWidgets.QTableWidget.SelectRows)
         #Esto carga los valores en el combobox siendo siempre el primero vacio que es la posicion 0 la predeterminada
-        events.Eventos.cargarProv()
+        events.Eventos.cargarProv(self)
         #Esto sirve para crear el rectangulo de abajo deltodo
         var.ui.statusbar.addPermanentWidget(var.ui.lblstatus, 1)
         var.ui.lblstatus.setText('Bienvenido a 2º DAM           Fecha: '+str(datetime.today().strftime('%A, %d de %B de %Y')))
@@ -166,12 +207,22 @@ class Main(QtWidgets.QMainWindow):
             events.Eventos.Salir(event)
 
 class FileDialogAbrir(QtWidgets.QFileDialog):
+    """
+
+    Clase que instancia la ventana de directorio
+
+    """
     def __init__(self):
         super(FileDialogAbrir, self).__init__()
         self.setWindowTitle('Abrir archivo')
         self.setModal(True)
 
 class PrintDialogAbrir(QPrintDialog):
+    """
+
+    Clase que instancia la ventana de impresion
+
+    """
     def __init__(self):
         super(PrintDialogAbrir, self).__init__()
         self.setModal(True)

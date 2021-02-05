@@ -7,7 +7,9 @@ class Facturas():
 
     def abrirCalendar(self):
         '''
-        Abrir la ventana calendario
+
+        Modulo que abre la ventana calendario para cargar la fecha de factura.
+
         '''
         try:
             var.dlgcalendar2.show()
@@ -16,7 +18,15 @@ class Facturas():
 
     def cargarFecha(qDate):
         ''''
-        Este módulo se ejecuta cuando clickeamos en un día del calendar, es decir, clicked.connect de calendar
+
+        Modulo que se ejecuta cuando clickamos en un dia del calendar.
+
+        :param qDate: Formateo de la fecha.
+        :return: None
+        :rtype: None
+
+        Cuando clickamos en el calendario carga la fecha en editFecha
+
         '''
         try:
             data = ('{0}/{1}/{2}'.format(qDate.day(), qDate.month(), qDate.year()))
@@ -26,6 +36,16 @@ class Facturas():
             print('Error cargar fecha: %s ' % str(error))
 
     def altaFactura(self):
+        """
+
+        Modulo que graba una factura previa al proceso de ventas.
+
+        :return: None
+        :rtype: None
+
+        Una vez grabada
+
+        """
         try:
             dni = var.ui.editDniFac.text()
             fecha = var.ui.editFecha.text()
@@ -41,8 +61,12 @@ class Facturas():
 
     def cargarFact(self):
         '''
-        Módulo que carga los datos de la factura y cliente
-        :return:
+
+        Módulo que carga los datos de la factura y cliente al clickar en la tabla Factura
+
+        :return: None
+        :rtype: None
+
         '''
         try:
             var.subfac = 0.00
@@ -59,9 +83,16 @@ class Facturas():
 
     def prepararTablaventas(index):
         '''
-        Modulo que prepara tabla Ventas, carga un combo en la tabla
-        y carga dicho combo con los datos del producto
-        :return:
+
+        Modulo que prepara tabla Ventas
+
+        :param index: fila de la tabla
+        :type index: int
+        :return: None
+        :rtype: None
+
+        Carga un combo en la tabla Ventas con los datos del producto e inserta nueva fila.
+
         '''
         try:
             var.cmbventa = QtWidgets.QComboBox()

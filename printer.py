@@ -8,6 +8,20 @@ from datetime import datetime
 class Printer():
 
     def reportCli(self):
+        """
+
+        Modulo que llama a la BBDD captura datos de los clientes ordenados alfabeticamente
+        y los va mostrando en el informe.
+
+        :return: None
+        :rtype: None
+
+        La variable i representa los valores del eje x.
+        La variable j representa los valores del eje j.
+        Los informes se guardan en la carpeta informe y al mismo tiempo se muestran
+        con el lector pdf por defecto del sistema.
+
+        """
         try:
             textlistado = "LISTADO DE CLIENTES"
             var.rep = canvas.Canvas('informes/listadoclientes.pdf')
@@ -46,6 +60,14 @@ class Printer():
             print('Error en reportCli %s' % str(error))
 
     def cabecera(self):
+        """
+
+        Modulo que carga la cabecera de todos los informes de la empresa, datos fiscales...
+
+        :return: None
+        :rtype: None
+
+        """
         try:
             logo = '.\\img\logo.jpg'
             var.rep.setTitle('INFORMES')
@@ -66,6 +88,14 @@ class Printer():
             print('Error en cabecera %s' % str(error))
 
     def pie(self):
+        """
+
+        Modulo que carga el pie del informe.
+
+        :return: None
+        :rtype: None
+
+        """
         try:
             var.rep.line(50,50,525,50)
             fecha = datetime.today()
@@ -78,6 +108,14 @@ class Printer():
             print('Error en pie de pagina %s' % str(error))
 
     def cabeceraCli(self):
+        """
+
+        Modulo que carga la cabecera de pagina del informe cliente
+
+        :return: None
+        :rtype: None
+
+        """
         try:
             var.rep.setFont('Helvetica-Bold', size=9)
             itemCli=["Cod","DNI","APELLIDOS","NOMBRE","FECHA ALTA"]
@@ -91,6 +129,20 @@ class Printer():
             print('Error en cabecera de cliente %s' % str(error))
 
     def reportPro(self):
+        """
+
+        Modulo que llama a la BBDD captura datos de los articulos ordenados alfabeticamente
+        y los va mostrando en el informe.
+
+        :return: None
+        :rtype: None
+
+        La variable i representa los valores del eje x.
+        La variable j representa los valores del eje j.
+        Los informes se guardan en la carpeta informe y al mismo tiempo se muestran
+        con el lector pdf por defecto del sistema.
+
+        """
         try:
             textlistado = "LISTADO DE PRODUCTOS"
             var.rep = canvas.Canvas('informes/listadoproductos.pdf')
@@ -128,6 +180,14 @@ class Printer():
             print('Error en reportCli %s' % str(error))
 
     def cabeceraPro(self):
+        """
+
+        Modulo que carga la cabecera de pagina del informe articulos
+
+        :return: None
+        :rtype: None
+
+        """
         try:
             var.rep.setFont('Helvetica-Bold', size=9)
 
@@ -141,6 +201,19 @@ class Printer():
             print('Error en cabecera de cliente %s' % str(error))
 
     def cabecerafac(codfac):
+        """
+
+        Modulo que carga la cabecera de pagina del informe facturas
+
+        :param codfac: Codigo de la factura
+        :type codfac: int
+        :return: None
+        :rtype: None
+
+        Toma datos de dos tablas. Las del cliente a la que esta asociado el codigo
+        factura y la de la tabla facturas para tomar los datos de dni y fecha.
+
+        """
         try:
             var.rep.setFont('Helvetica-Bold', size=11)
             var.rep.drawString(55, 725, 'Cliente: ')
@@ -184,6 +257,20 @@ class Printer():
             print('Error cabecfac %s' % str(error))
 
     def reportFac(self):
+        """
+
+        Modulo que llama a la BBDD captura datos de las facturas de un cliente
+        ordenados alfabeticamente y los va mostrando en el informe.
+
+        :return: None
+        :rtype: None
+
+        La variable i representa los valores del eje x.
+        La variable j representa los valores del eje j.
+        Los informes se guardan en la carpeta informe y al mismo tiempo se muestran
+        con el lector pdf por defecto del sistema.
+
+        """
         try:
             textlistado = 'FACTURA'
             var.rep = canvas.Canvas('informes/factura.pdf', pagesize=A4)
