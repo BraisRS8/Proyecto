@@ -107,6 +107,14 @@ class Facturas():
             print('Error Preparar tabla de ventas: %s ' % str(error))
 
     def borrarFactura(self):
+        """
+
+        Modulo que borra una factura y prepara la tabla de ventas
+
+        :return: None
+        :rtype: None
+
+        """
         try:
             codfactura = var.ui.lblCodFac.text()
             conexion.Conexion.borraFac(self, codfactura)
@@ -115,6 +123,14 @@ class Facturas():
             print('Error Borrar Factura en Cascada: %s ' % str(error))
 
     def procesoVenta(self):
+        """
+
+        Modulo que prepara la venta para su alta y mostrado
+
+        :return: None
+        :rtype: None
+
+        """
         try:
             var.subfac = 0.00
             var.venta = []
@@ -133,7 +149,6 @@ class Facturas():
             subtotal = round(float(cantidad)*float(dato[1]), 2)
             var.venta.append(subtotal)
             var.venta.append(row)
-            #sleep(1)
             if codfac != '' and articulo != '' and cantidad != '':
                 conexion.Conexion.altaVenta()
                 var.subfac = round(float(subtotal) + float(var.subfac), 2)
@@ -150,6 +165,14 @@ class Facturas():
             print('Error proceso venta: %s ' % str(error))
 
     def mostrarVentasfac():
+        """
+
+        Modulo que prepara la tabla de ventas para mostrarla
+
+        :return: None
+        :rtype: None
+
+        """
         try:
             var.cmbventa = QtWidgets.QComboBox()
             conexion.Conexion.cargarCmbventa(var.cmbventa)
@@ -160,6 +183,14 @@ class Facturas():
             print('Error proceso mostrar ventas por factura: %s' %str(error))
 
     def anularVenta(self):
+        """
+
+        Modulo que prepara el borrado de una venta
+
+        :return: None
+        :rtype: None
+        
+        """
         try:
             fila = var.ui.tableArtFac.selectedItems()
             if fila:
