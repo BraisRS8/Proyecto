@@ -41,3 +41,10 @@ class MyTestCase(unittest.TestCase):
         except Exception as error:
             print('Error listado de la tabla ventas: %s ' % str(error))
         self.assertEqual(round(float(valor),2), round(float(var.fac),2),msg)
+
+    def test_product(self):
+        articulo = "Coche"
+        value = conexion.Conexion.obtenCodPrec(articulo)
+        dato = ['1','1.5']
+        msg = 'Prueba producto no valida'
+        self.assertEqual(dato,value,msg)
