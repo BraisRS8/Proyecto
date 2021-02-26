@@ -5,7 +5,7 @@ from vensalir import *
 from vencalendar import *
 from venconf import *
 from datetime import datetime
-import sys, var, events, clients, conexion, locale, products, bills
+import sys, var, events, clients, conexion, locale, products, bills, backup
 from PyQt5.QtPrintSupport import QPrintDialog
 
 #Esto es para que la fecha salga en español
@@ -142,7 +142,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.toolbarAbrirDir.triggered.connect(events.Eventos.AbrirDir)
         var.ui.toolbarPrint.triggered.connect(events.Eventos.Print)
         var.ui.actionAbout.triggered.connect(events.Eventos.About)
-
+        var.ui.actionCrear_Backup.triggered.connect(backup.Backups.crearBackup)
+        var.ui.actionBackup.triggered.connect(backup.Backups.restaurarBackup)
 
         var.ui.btnAltaPro.clicked.connect(products.Productos.altaProducto)
         var.ui.btnModifPro.clicked.connect(products.Productos.modifProducto)

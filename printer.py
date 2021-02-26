@@ -29,15 +29,16 @@ class Printer():
             Printer.cabeceraCli(self)
             query = QtSql.QSqlQuery()
             query.prepare('select codigo, dni, apellidos, nombre, fechalta from clientes order by apellidos, nombre')
+            var.rep.setFont('Helvetica', size=10)
             if query.exec_():
                 i = 50
                 j = 690
-            Printer.pie(self)
+            Printer.pie(textlistado)
             while query.next():
                 if j <= 80:
                     var.rep.showPage()
                     Printer.cabecera(self)
-                    Printer.pie(self)
+                    Printer.pie(textlistado)
                     Printer.cabeceraCli(self)
                     i = 50
                     j = 690
@@ -52,7 +53,7 @@ class Printer():
             rootPath = ".\\informes"
             cont = 0
             for file in os.listdir(rootPath):
-                if file.endswith('.pdf'):
+                if file.endswith('listadoclientes.pdf'):
                     os.startfile("%s/%s" % (rootPath,file))
                 cont = cont + 1
 
@@ -76,7 +77,7 @@ class Printer():
             var.rep.line(45, 820, 525, 820)
             var.rep.line(45, 745, 525, 745)
             textcif = 'A0000000H'
-            textnom = 'IMPORTACION Y EXPORTACION TEAIS, S.L.'
+            textnom = 'IMPORTACION Y EXPORTACION TEIS, S.L.'
             textdir = 'Avenida Galicia, 101 - Vigo'
             texttlfo = '886 12 04 64'
             var.rep.drawImage(logo, 450, 752)
@@ -87,7 +88,7 @@ class Printer():
         except Exception as error:
             print('Error en cabecera %s' % str(error))
 
-    def pie(self):
+    def pie(textlistado):
         """
 
         Modulo que carga el pie del informe.
@@ -103,7 +104,7 @@ class Printer():
             var.rep.setFont('Helvetica-Oblique', size=7)
             var.rep.drawString(460,40,str(fecha))
             var.rep.drawString(275, 40, str('Pagina %s' % var.rep.getPageNumber()))
-            var.rep.drawString(50, 40, str('Listado de Clientes'))
+            var.rep.drawString(50, 40, str(textlistado))
         except Exception as error:
             print('Error en pie de pagina %s' % str(error))
 
@@ -118,6 +119,9 @@ class Printer():
         """
         try:
             var.rep.setFont('Helvetica-Bold', size=9)
+            textlistado = 'LISTADO DE CLIENTES'
+            var.rep.drawString(255, 735, textlistado)
+            var.rep.line(45, 730, 525, 730)
             itemCli=["Cod","DNI","APELLIDOS","NOMBRE","FECHA ALTA"]
             var.rep.drawString(45,710,itemCli[0])
             var.rep.drawString(90, 710, itemCli[1])
@@ -153,7 +157,7 @@ class Printer():
             if query.exec_():
                 i = 50
                 j = 690
-            Printer.pie(self)
+            Printer.pie(textlistado)
             while query.next():
                 if j <= 80:
                     var.rep.showPage()
@@ -190,7 +194,9 @@ class Printer():
         """
         try:
             var.rep.setFont('Helvetica-Bold', size=9)
-
+            textlistado = 'LISTADO DE PRODUCTOS'
+            var.rep.drawString(255, 735, textlistado)
+            var.rep.line(45, 730, 525, 730)
             itemPro=["Cod","Nombre","Precio","Stock"]
             var.rep.drawString(45,710,itemPro[0])
             var.rep.drawString(90, 710, itemPro[1])
@@ -248,13 +254,11 @@ class Printer():
             var.rep.drawString(360, 630, temven[3])
             var.rep.drawString(470, 630, temven[4])
             var.rep.setFont('Helvetica-Bold', size=12)
-            var.rep.drawRightString(500, 160, 'Subtotal:   ' + "{0:.2f}".format(float(
-                var.ui.lblSubtotal.text())) + ' €')
+            var.rep.drawRightString(500, 160, 'Subtotal:   ' + "{0:.2f}".format(float(var.ui.lblSubtotal.text())) + ' €')
             var.rep.drawRightString(500, 140, 'IVA:     ' + "{0:.2f}".format(float(var.ui.lblIVA.text())) + ' €')
-            var.rep.drawRightString(500, 115, 'Total Factura: ' + "{0:.2f}".format(float(
-                var.ui.lblTotal.text())) + ' €')
+            var.rep.drawRightString(500, 115, 'Total Factura: ' + "{0:.2f}".format(float(var.ui.lblTotal.text())) + ' €')
         except Exception as error:
-            print('Error cabecfac %s' % str(error))
+            print('Error cabecera factura %s' % str(error))
 
     def reportFac(self):
         """
@@ -273,7 +277,7 @@ class Printer():
         """
         try:
             textlistado = 'FACTURA'
-            var.rep = canvas.Canvas('informes/factura.pdf')
+            var.rep = canvas.Canvas('informes/factura.pdf', pagesize=A4)
             Printer.cabecera(self)
             Printer.pie(textlistado)
             codfac = var.ui.lblCodFac.text()
@@ -294,8 +298,9 @@ class Printer():
                         i = 50
                         j = 600
                     var.rep.setFont('Helvetica', size=10)
+                    nomartic= Printer.codArticulo(str(query.value(1)))
                     var.rep.drawString(i, j, str(query.value(0)))
-                    var.rep.drawString(i + 90, j, str(query.value(1)))
+                    var.rep.drawString(i + 90, j, str(nomartic))
                     var.rep.drawRightString(i + 245, j, str(query.value(2)))
                     var.rep.drawRightString(i + 355, j, "{0:.2f}".format(float(query.value(3))))
                     subtotal = round(float(query.value(2)) * float(query.value(3)),2)
@@ -312,3 +317,25 @@ class Printer():
 
         except Exception as error:
             print('Error reporfac %s' % str(error))
+
+    def codArticulo(codarticventa):
+        """
+
+        Modulo que se encarga de buscar el nombre del articulo segun su codigo en la tabla de Ventas
+
+        :return: nomartic
+        :rtype nomartic: string
+
+        """
+
+        try:
+            query = QtSql.QSqlQuery()
+            query.prepare('select nombre from articulos where codigo = :codigo')
+            query.bindValue(':codigo', int(codarticventa))
+            if query.exec_():
+                while query.next():
+                    nomartic = query.value(0)
+            return nomartic
+        except Exception as error:
+            print("Error al intentar coger el nombre del articulo: %s" %str(error))
+
