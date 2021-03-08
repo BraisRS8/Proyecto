@@ -4,6 +4,7 @@ from venabout import *
 from vensalir import *
 from vencalendar import *
 from venconf import *
+from venimp import *
 from datetime import datetime
 import sys, var, events, clients, conexion, locale, products, bills, backup
 from PyQt5.QtPrintSupport import QPrintDialog
@@ -71,6 +72,20 @@ class DialogConf(QtWidgets.QDialog):
         var.dlgconf.btnBox.button(QtWidgets.QDialogButtonBox.Yes).clicked.connect(clients.Clientes.bajaCliente)
         self.setModal(True)
 
+class DialogImp(QtWidgets.QDialog):
+    def __init__(self):
+        """
+
+        Clase que instancia la ventana avisos
+
+        """
+        super(DialogImp, self).__init__()
+        var.dlgimp = Ui_venimp()
+        var.dlgimp.setupUi(self)
+        var.dlgimp.buttonBox.button(QtWidgets.QDialogButtonBox.Yes).clicked.connect(backup.Backups.cargaDatos)
+        print('aaaa')
+        self.setModal(True)
+
 class DialogAbout(QtWidgets.QDialog):
     """
 
@@ -115,6 +130,7 @@ class Main(QtWidgets.QMainWindow):
         var.dlgabout = DialogAbout()
         var.dlgcalendar2 = DialogCalendar2()
         var.cmbventa = QtWidgets.QComboBox()
+        var.dlgimp = DialogImp()
         '''
         colección de datos
         '''
@@ -144,6 +160,8 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionAbout.triggered.connect(events.Eventos.About)
         var.ui.actionCrear_Backup.triggered.connect(backup.Backups.crearBackup)
         var.ui.actionBackup.triggered.connect(backup.Backups.restaurarBackup)
+        var.ui.actionImportar_datos.triggered.connect(backup.Backups.importarDatos)
+
 
         var.ui.btnAltaPro.clicked.connect(products.Productos.altaProducto)
         var.ui.btnModifPro.clicked.connect(products.Productos.modifProducto)

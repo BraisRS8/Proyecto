@@ -5,6 +5,7 @@ global dlgsalir
 global dlgcalendar
 global dlgconf
 global dlgabout
+global dlgimp
 global sex
 pay = []
 pay2 = []
@@ -20,5 +21,6 @@ global subfac
 global iva
 global fac
 global articulo
+global fileimp
 
 venta = []

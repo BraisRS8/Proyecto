@@ -1,6 +1,6 @@
-import sys, var, clients, events, conexion, zipfile, os, shutil
+import sys, var, clients, events, conexion, zipfile, os, shutil, xlrd
 from datetime import datetime
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets,QtSql
 import time
 
 class Backups():
@@ -59,3 +59,69 @@ class Backups():
             var.ui.lblstatus.setText('Backup restaurado correctamente      Fecha: ' + str(datetime.today().strftime('%A, %d de %B de %Y')))
         except Exception as error:
             print('Error restaurar base de datos: %s '  % str(error))
+
+    def importarDatos(self):
+
+        try:
+            option = QtWidgets.QFileDialog.Options()
+            filename = var.filedlgabrir.getOpenFileName(None, 'Importar datos','','*.xls;;All Files', options=option)
+            if var.filedlgabrir.Accepted and filename[0] != '':
+                var.fileimp = filename[0]
+                var.dlgimp.show()
+
+        except Exception as error:
+            print('Error importar datos: %s ' % str(error))
+
+    def cargaDatos(self):
+        try:
+            documento = xlrd.open_workbook(str(var.fileimp))
+
+            productos = documento.sheet_by_index(0)
+
+            filas_prod = productos.nrows
+            cont = 0
+
+            for i in range(1, filas_prod):
+                prod_nom = str(productos.cell_value(i, 0))
+                prod_precio = repr(productos.cell_value(i, 1))
+                prod_stock = int(productos.cell_value(i, 2))
+
+                query = QtSql.QSqlQuery()
+                query.prepare('select codigo, precio, stock from articulos where nombre = :nombre')
+                query.bindValue(':nombre', str(prod_nom))
+
+                if query.exec_():
+                    while query.next():
+                        cont = cont + 1
+                        query1 = QtSql.QSqlQuery()
+                        query1.prepare('update articulos set precio=:precio, stock=:stock where nombre = :nombre')
+                        query1.bindValue(':nombre', str(prod_nom))
+                        query1.bindValue(':precio', float(prod_precio))
+                        stock = int(query.value(2)) + prod_stock
+                        query1.bindValue(':stock', int(stock))
+                        if query1.exec_():
+                            var.ui.lblstatus.setText('Articulos actualizados    Fecha: ' + str(datetime.today().strftime('%A, %d de %B de %Y')))
+                        else:
+                            print("Error actualizando productos: ", query1.lastError().text())
+
+                    if cont == 0:
+                        query2 = QtSql.QSqlQuery()
+                        query2.prepare('insert into articulos (nombre, precio, stock) VALUES (:nombre, :precio, :stock)')
+                        query2.bindValue(':nombre', str(prod_nom))
+                        query2.bindValue(':precio', float(prod_precio))
+                        query2.bindValue(':stock', int(prod_stock))
+
+                        if query2.exec_():
+                            var.ui.lblstatus.setText('Articulos añadidos    Fecha: ' + str(datetime.today().strftime('%A, %d de %B de %Y')))
+                        else:
+                            print("Error añadiendo productos: ", query2.lastError().text())
+
+            conexion.Conexion.db_connect(var.filebd)
+            conexion.Conexion.mostrarProducto(self)
+            print("---------")
+
+        except Exception as error:
+            print('Error en la carga de datos: %s' % str(error))
+
+
+
