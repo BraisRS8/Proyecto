@@ -141,6 +141,14 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error Preparar tabla de ventas: </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Facturas.borrarFactura"><a class="viewcode-back" href="../src/bills.html#bills.Facturas.borrarFactura">[documentos]</a>    <span class="k">def</span> <span class="nf">borrarFactura</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Modulo que borra una factura y prepara la tabla de ventas</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">codfactura</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">lblCodFac</span><span class="o">.</span><span class="n">text</span><span class="p">()</span>
             <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">borraFac</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">codfactura</span><span class="p">)</span>
@@ -149,6 +157,14 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error Borrar Factura en Cascada: </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Facturas.procesoVenta"><a class="viewcode-back" href="../src/bills.html#bills.Facturas.procesoVenta">[documentos]</a>    <span class="k">def</span> <span class="nf">procesoVenta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Modulo que prepara la venta para su alta y mostrado</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">subfac</span> <span class="o">=</span> <span class="mf">0.00</span>
             <span class="n">var</span><span class="o">.</span><span class="n">venta</span> <span class="o">=</span> <span class="p">[]</span>
@@ -167,7 +183,6 @@
             <span class="n">subtotal</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">cantidad</span><span class="p">)</span><span class="o">*</span><span class="nb">float</span><span class="p">(</span><span class="n">dato</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span>
             <span class="n">var</span><span class="o">.</span><span class="n">venta</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">subtotal</span><span class="p">)</span>
             <span class="n">var</span><span class="o">.</span><span class="n">venta</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-            <span class="c1">#sleep(1)</span>
             <span class="k">if</span> <span class="n">codfac</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="ow">and</span> <span class="n">articulo</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="ow">and</span> <span class="n">cantidad</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
                 <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">altaVenta</span><span class="p">()</span>
                 <span class="n">var</span><span class="o">.</span><span class="n">subfac</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">subtotal</span><span class="p">)</span> <span class="o">+</span> <span class="nb">float</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">subfac</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
@@ -184,6 +199,14 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error proceso venta: </span><span class="si">%s</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Facturas.mostrarVentasfac"><a class="viewcode-back" href="../src/bills.html#bills.Facturas.mostrarVentasfac">[documentos]</a>    <span class="k">def</span> <span class="nf">mostrarVentasfac</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Modulo que prepara la tabla de ventas para mostrarla</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">var</span><span class="o">.</span><span class="n">cmbventa</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QComboBox</span><span class="p">()</span>
             <span class="n">conexion</span><span class="o">.</span><span class="n">Conexion</span><span class="o">.</span><span class="n">cargarCmbventa</span><span class="p">(</span><span class="n">var</span><span class="o">.</span><span class="n">cmbventa</span><span class="p">)</span>
@@ -194,6 +217,14 @@
             <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Error proceso mostrar ventas por factura: </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span><span class="nb">str</span><span class="p">(</span><span class="n">error</span><span class="p">))</span></div>
 
 <div class="viewcode-block" id="Facturas.anularVenta"><a class="viewcode-back" href="../src/bills.html#bills.Facturas.anularVenta">[documentos]</a>    <span class="k">def</span> <span class="nf">anularVenta</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Modulo que prepara el borrado de una venta</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        :rtype: None</span>
+<span class="sd">        </span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">fila</span> <span class="o">=</span> <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">tableArtFac</span><span class="o">.</span><span class="n">selectedItems</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">fila</span><span class="p">:</span>

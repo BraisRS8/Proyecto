@@ -13,12 +13,13 @@ from PyQt5.QtPrintSupport import QPrintDialog
 locale.setlocale(locale.LC_ALL,'es-ES')
 
 class DialogSalir(QtWidgets.QDialog):
+    """
+
+    Clase que instancia la ventana de aviso salir
+
+    """
     def __init__(self):
-        """
 
-        Clase que instancia la ventana de aviso salir
-
-        """
         super(DialogSalir, self).__init__()
         var.dlgsalir = Ui_venSalir()
         var.dlgsalir.setupUi(self)
@@ -26,12 +27,13 @@ class DialogSalir(QtWidgets.QDialog):
         self.setModal(True)
 
 class DialogCalendar(QtWidgets.QDialog):
+    """
+
+    Clase que instancia la ventana de calendario
+
+    """
     def __init__(self):
-        """
 
-        Clase que instancia la ventana de calendario
-
-        """
         super(DialogCalendar, self).__init__()
         var.dlgcalendar = Ui_Calendar()
         var.dlgcalendar.setupUi(self)
@@ -43,12 +45,13 @@ class DialogCalendar(QtWidgets.QDialog):
         self.setModal(True)
 
 class DialogCalendar2(QtWidgets.QDialog):
+    """
+
+    Clase que instancia la ventana de calendario
+
+    """
     def __init__(self):
-        """
 
-        Clase que instancia la ventana de calendario
-
-        """
         super(DialogCalendar2, self).__init__()
         var.dlgcalendar2 = Ui_Calendar()
         var.dlgcalendar2.setupUi(self)
@@ -60,12 +63,13 @@ class DialogCalendar2(QtWidgets.QDialog):
         self.setModal(True)
 
 class DialogConf(QtWidgets.QDialog):
+    """
+
+    Clase que instancia la ventana avisos
+
+    """
     def __init__(self):
-        """
 
-        Clase que instancia la ventana avisos
-
-        """
         super(DialogConf, self).__init__()
         var.dlgconf = Ui_venconf()
         var.dlgconf.setupUi(self)
@@ -73,12 +77,13 @@ class DialogConf(QtWidgets.QDialog):
         self.setModal(True)
 
 class DialogImp(QtWidgets.QDialog):
+    """
+
+    Clase que instancia la ventana confirmacion de importacion
+
+    """
     def __init__(self):
-        """
 
-        Clase que instancia la ventana avisos
-
-        """
         super(DialogImp, self).__init__()
         var.dlgimp = Ui_venimp()
         var.dlgimp.setupUi(self)

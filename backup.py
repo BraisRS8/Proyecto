@@ -61,7 +61,16 @@ class Backups():
             print('Error restaurar base de datos: %s '  % str(error))
 
     def importarDatos(self):
+        """
 
+        Modulo que prepara la importacion de datos de un archivo Excel
+
+        :return: None
+        :rtype: None
+
+        Abre la ventana de seleccion de archivo y llama a la ventana de confirmacion
+
+        """
         try:
             option = QtWidgets.QFileDialog.Options()
             filename = var.filedlgabrir.getOpenFileName(None, 'Importar datos','','*.xls;;All Files', options=option)
@@ -73,6 +82,17 @@ class Backups():
             print('Error importar datos: %s ' % str(error))
 
     def cargaDatos(self):
+        """
+
+        Modulos que se encarga de la importacion de los datos de un Excel
+
+        :return: None
+        :rtype: None
+
+        Dependiendo de si ya existen los productos o no solo actualiza el stock,
+        despues actualiza la tabla de Productos.
+
+        """
         try:
             documento = xlrd.open_workbook(str(var.fileimp))
 

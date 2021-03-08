@@ -66,6 +66,27 @@
 </dd></dl>
 
 <dl class="py method">
+<dt id="printer.Printer.cabeceraFacCli">
+<code class="sig-name descname">cabeceraFacCli</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">apel</span></em>, <em class="sig-param"><span class="n">textlistado</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.cabeceraFacCli"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.cabeceraFacCli" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modulo que carga la cabecera de facturas por cliente</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parámetros</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dni</strong> (<em>String</em>) – DNI del cliente</p></li>
+<li><p><strong>apel</strong> (<em>String</em>) – Apellidos del cliente</p></li>
+<li><p><strong>textlistado</strong> (<em>String</em>) – Titulo del informe</p></li>
+</ul>
+</dd>
+<dt class="field-even">Devuelve</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+<dt class="field-odd">Tipo del valor devuelto</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="printer.Printer.cabeceraPro">
 <code class="sig-name descname">cabeceraPro</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.cabeceraPro"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.cabeceraPro" title="Enlazar permanentemente con esta definición">¶</a></dt>
 <dd><p>Modulo que carga la cabecera de pagina del informe articulos</p>
@@ -96,6 +117,35 @@
 </dl>
 <p>Toma datos de dos tablas. Las del cliente a la que esta asociado el codigo
 factura y la de la tabla facturas para tomar los datos de dni y fecha.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="printer.Printer.codArticulo">
+<code class="sig-name descname">codArticulo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.codArticulo"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.codArticulo" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modulo que se encarga de buscar el nombre del articulo segun su codigo en la tabla de Ventas</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>nomartic</p>
+</dd>
+<dt class="field-even">Rtype nomartic</dt>
+<dd class="field-even"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="printer.Printer.infFacCli">
+<code class="sig-name descname">infFacCli</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/printer.html#Printer.infFacCli"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#printer.Printer.infFacCli" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modulo que se encarga de hacer un informe con todas las facturas de un cliente ordenadas
+por fecha y con el total</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">

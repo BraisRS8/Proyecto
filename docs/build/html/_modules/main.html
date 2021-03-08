@@ -38,20 +38,22 @@
 <span class="kn">from</span> <span class="nn">vensalir</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">vencalendar</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">venconf</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">venimp</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
-<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">var</span><span class="o">,</span> <span class="nn">events</span><span class="o">,</span> <span class="nn">clients</span><span class="o">,</span> <span class="nn">conexion</span><span class="o">,</span> <span class="nn">locale</span><span class="o">,</span> <span class="nn">products</span><span class="o">,</span> <span class="nn">bills</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">var</span><span class="o">,</span> <span class="nn">events</span><span class="o">,</span> <span class="nn">clients</span><span class="o">,</span> <span class="nn">conexion</span><span class="o">,</span> <span class="nn">locale</span><span class="o">,</span> <span class="nn">products</span><span class="o">,</span> <span class="nn">bills</span><span class="o">,</span> <span class="nn">backup</span>
 <span class="kn">from</span> <span class="nn">PyQt5.QtPrintSupport</span> <span class="kn">import</span> <span class="n">QPrintDialog</span>
 
 <span class="c1">#Esto es para que la fecha salga en español</span>
 <span class="n">locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">locale</span><span class="o">.</span><span class="n">LC_ALL</span><span class="p">,</span><span class="s1">&#39;es-ES&#39;</span><span class="p">)</span>
 
 <div class="viewcode-block" id="DialogSalir"><a class="viewcode-back" href="../src/main.html#main.DialogSalir">[documentos]</a><span class="k">class</span> <span class="nc">DialogSalir</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QDialog</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Clase que instancia la ventana de aviso salir</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="sd">        Clase que instancia la ventana de aviso salir</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">DialogSalir</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="n">var</span><span class="o">.</span><span class="n">dlgsalir</span> <span class="o">=</span> <span class="n">Ui_venSalir</span><span class="p">()</span>
         <span class="n">var</span><span class="o">.</span><span class="n">dlgsalir</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -59,12 +61,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">setModal</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DialogCalendar"><a class="viewcode-back" href="../src/main.html#main.DialogCalendar">[documentos]</a><span class="k">class</span> <span class="nc">DialogCalendar</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QDialog</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Clase que instancia la ventana de calendario</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="sd">        Clase que instancia la ventana de calendario</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">DialogCalendar</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="n">var</span><span class="o">.</span><span class="n">dlgcalendar</span> <span class="o">=</span> <span class="n">Ui_Calendar</span><span class="p">()</span>
         <span class="n">var</span><span class="o">.</span><span class="n">dlgcalendar</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -76,12 +79,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">setModal</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DialogCalendar2"><a class="viewcode-back" href="../src/main.html#main.DialogCalendar2">[documentos]</a><span class="k">class</span> <span class="nc">DialogCalendar2</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QDialog</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Clase que instancia la ventana de calendario</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="sd">        Clase que instancia la ventana de calendario</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">DialogCalendar2</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="n">var</span><span class="o">.</span><span class="n">dlgcalendar2</span> <span class="o">=</span> <span class="n">Ui_Calendar</span><span class="p">()</span>
         <span class="n">var</span><span class="o">.</span><span class="n">dlgcalendar2</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -93,16 +97,32 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">setModal</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DialogConf"><a class="viewcode-back" href="../src/main.html#main.DialogConf">[documentos]</a><span class="k">class</span> <span class="nc">DialogConf</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QDialog</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Clase que instancia la ventana avisos</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="sd">        Clase que instancia la ventana avisos</span>
-
-<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">DialogConf</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="n">var</span><span class="o">.</span><span class="n">dlgconf</span> <span class="o">=</span> <span class="n">Ui_venconf</span><span class="p">()</span>
         <span class="n">var</span><span class="o">.</span><span class="n">dlgconf</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="n">var</span><span class="o">.</span><span class="n">dlgconf</span><span class="o">.</span><span class="n">btnBox</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Yes</span><span class="p">)</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">clients</span><span class="o">.</span><span class="n">Clientes</span><span class="o">.</span><span class="n">bajaCliente</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setModal</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="DialogImp"><a class="viewcode-back" href="../src/main.html#main.DialogImp">[documentos]</a><span class="k">class</span> <span class="nc">DialogImp</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QDialog</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Clase que instancia la ventana confirmacion de importacion</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">DialogImp</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="n">var</span><span class="o">.</span><span class="n">dlgimp</span> <span class="o">=</span> <span class="n">Ui_venimp</span><span class="p">()</span>
+        <span class="n">var</span><span class="o">.</span><span class="n">dlgimp</span><span class="o">.</span><span class="n">setupUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">var</span><span class="o">.</span><span class="n">dlgimp</span><span class="o">.</span><span class="n">buttonBox</span><span class="o">.</span><span class="n">button</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QDialogButtonBox</span><span class="o">.</span><span class="n">Yes</span><span class="p">)</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">backup</span><span class="o">.</span><span class="n">Backups</span><span class="o">.</span><span class="n">cargaDatos</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;aaaa&#39;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">setModal</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="DialogAbout"><a class="viewcode-back" href="../src/main.html#main.DialogAbout">[documentos]</a><span class="k">class</span> <span class="nc">DialogAbout</span><span class="p">(</span><span class="n">QtWidgets</span><span class="o">.</span><span class="n">QDialog</span><span class="p">):</span>
@@ -149,6 +169,7 @@
         <span class="n">var</span><span class="o">.</span><span class="n">dlgabout</span> <span class="o">=</span> <span class="n">DialogAbout</span><span class="p">()</span>
         <span class="n">var</span><span class="o">.</span><span class="n">dlgcalendar2</span> <span class="o">=</span> <span class="n">DialogCalendar2</span><span class="p">()</span>
         <span class="n">var</span><span class="o">.</span><span class="n">cmbventa</span> <span class="o">=</span> <span class="n">QtWidgets</span><span class="o">.</span><span class="n">QComboBox</span><span class="p">()</span>
+        <span class="n">var</span><span class="o">.</span><span class="n">dlgimp</span> <span class="o">=</span> <span class="n">DialogImp</span><span class="p">()</span>
         <span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">        colección de datos</span>
 <span class="sd">        &#39;&#39;&#39;</span>
@@ -176,6 +197,9 @@
         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">toolbarAbrirDir</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">Eventos</span><span class="o">.</span><span class="n">AbrirDir</span><span class="p">)</span>
         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">toolbarPrint</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">Eventos</span><span class="o">.</span><span class="n">Print</span><span class="p">)</span>
         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">actionAbout</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">Eventos</span><span class="o">.</span><span class="n">About</span><span class="p">)</span>
+        <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">actionCrear_Backup</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">backup</span><span class="o">.</span><span class="n">Backups</span><span class="o">.</span><span class="n">crearBackup</span><span class="p">)</span>
+        <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">actionBackup</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">backup</span><span class="o">.</span><span class="n">Backups</span><span class="o">.</span><span class="n">restaurarBackup</span><span class="p">)</span>
+        <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">actionImportar_datos</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">backup</span><span class="o">.</span><span class="n">Backups</span><span class="o">.</span><span class="n">importarDatos</span><span class="p">)</span>
 
 
         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">btnAltaPro</span><span class="o">.</span><span class="n">clicked</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">products</span><span class="o">.</span><span class="n">Productos</span><span class="o">.</span><span class="n">altaProducto</span><span class="p">)</span>
@@ -194,6 +218,7 @@
         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">actionInforme</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">printer</span><span class="o">.</span><span class="n">Printer</span><span class="o">.</span><span class="n">reportCli</span><span class="p">)</span>
         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">actionInforme_Productos</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">printer</span><span class="o">.</span><span class="n">Printer</span><span class="o">.</span><span class="n">reportPro</span><span class="p">)</span>
         <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">actionInforme_Facturas</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">printer</span><span class="o">.</span><span class="n">Printer</span><span class="o">.</span><span class="n">reportFac</span><span class="p">)</span>
+        <span class="n">var</span><span class="o">.</span><span class="n">ui</span><span class="o">.</span><span class="n">actionInforme_Factura_Cliente</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">printer</span><span class="o">.</span><span class="n">Printer</span><span class="o">.</span><span class="n">infFacCli</span><span class="p">)</span>
 
         <span class="c1">#esto es para hacer las selecciones de checkboxes o radiobuttons y comprobar si hay cambios</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">var</span><span class="o">.</span><span class="n">rbtsex</span><span class="p">:</span>

@@ -1,0 +1,170 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>backup module &#8212; documentación de RODRIGUEZSOLINO - 0.2.10</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/translations.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-backup">
+<span id="backup-module"></span><h1>backup module<a class="headerlink" href="#module-backup" title="Enlazar permanentemente con este título">¶</a></h1>
+<dl class="py class">
+<dt id="backup.Backups">
+<em class="property">class </em><code class="sig-prename descclassname">backup.</code><code class="sig-name descname">Backups</code><a class="reference internal" href="../_modules/backup.html#Backups"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#backup.Backups" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="backup.Backups.cargaDatos">
+<code class="sig-name descname">cargaDatos</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/backup.html#Backups.cargaDatos"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#backup.Backups.cargaDatos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modulos que se encarga de la importacion de los datos de un Excel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Dependiendo de si ya existen los productos o no solo actualiza el stock,
+despues actualiza la tabla de Productos.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="backup.Backups.crearBackup">
+<code class="sig-name descname">crearBackup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/backup.html#Backups.crearBackup"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#backup.Backups.crearBackup" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modulo que se encarga de realizar el backup de la base de datos</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Utiliza la librería zipfile, añade la fecha y hora de la copia al nombre de esta y tras realizar la copia
+la mueve al directorio deseado por el cliente. Para ello abre una ventana de diálogo</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="backup.Backups.importarDatos">
+<code class="sig-name descname">importarDatos</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/backup.html#Backups.importarDatos"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#backup.Backups.importarDatos" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modulo que prepara la importacion de datos de un archivo Excel</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Abre la ventana de seleccion de archivo y llama a la ventana de confirmacion</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="backup.Backups.restaurarBackup">
+<code class="sig-name descname">restaurarBackup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/backup.html#Backups.restaurarBackup"><span class="viewcode-link">[fuente]</span></a><a class="headerlink" href="#backup.Backups.restaurarBackup" title="Enlazar permanentemente con esta definición">¶</a></dt>
+<dd><p>Modulo que restaura un Backup</p>
+<dl class="field-list simple">
+<dt class="field-odd">Devuelve</dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+<dt class="field-even">Tipo del valor devuelto</dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>Abre ventana de diálogo para buscar el directorio donde está copia de la BBDD y la restaura haciendo suo
+de la librería zipfile</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">RODRIGUEZSOLINO</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navegación</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Búsqueda rápida</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Ir a" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Brais.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.4.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/src/backup.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
