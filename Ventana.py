@@ -886,6 +886,8 @@ class Ui_VenPrincipal(object):
         icon9.addPixmap(QtGui.QPixmap("img/crear.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.actionCrear_Backup.setIcon(icon9)
         self.actionCrear_Backup.setObjectName("actionCrear_Backup")
+        self.actionInforme_Factura_Cliente = QtWidgets.QAction(VenPrincipal)
+        self.actionInforme_Factura_Cliente.setObjectName("actionInforme_Factura_Cliente")
         self.menuArchivo.addAction(self.toolbarAbrirDir)
         self.menuArchivo.addAction(self.toolbarPrint)
         self.menuArchivo.addAction(self.actionCrear_Backup)
@@ -896,6 +898,7 @@ class Ui_VenPrincipal(object):
         self.menuInformes.addAction(self.actionInforme)
         self.menuInformes.addAction(self.actionInforme_Productos)
         self.menuInformes.addAction(self.actionInforme_Facturas)
+        self.menuInformes.addAction(self.actionInforme_Factura_Cliente)
         self.menubar.addAction(self.menuArchivo.menuAction())
         self.menubar.addAction(self.menuInformes.menuAction())
         self.menubar.addAction(self.menuAyuda.menuAction())
@@ -1001,4 +1004,5 @@ class Ui_VenPrincipal(object):
         self.actionInforme_Productos.setText(_translate("VenPrincipal", "Informe Productos"))
         self.actionInforme_Facturas.setText(_translate("VenPrincipal", "Informe Facturas"))
         self.actionCrear_Backup.setText(_translate("VenPrincipal", "Crear Backup"))
+        self.actionInforme_Factura_Cliente.setText(_translate("VenPrincipal", "Informe Factura Cliente"))
 import toolbarbackup_rc

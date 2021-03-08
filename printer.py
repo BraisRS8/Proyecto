@@ -339,3 +339,93 @@ class Printer():
         except Exception as error:
             print("Error al intentar coger el nombre del articulo: %s" %str(error))
 
+    def cabeceraFacCli(dni,apel,textlistado):
+        """
+
+        Modulo que carga la cabecera de facturas por cliente
+
+        :param dni: DNI del cliente
+        :type dni: String
+        :param apel: Apellidos del cliente
+        :type apel: String
+        :param textlistado: Titulo del informe
+        :type textlistado: String
+        :return: None
+        :rtype: None
+
+        """
+        try:
+            var.rep.setFont('Helvetica-Bold', size=9)
+            var.rep.drawString(230, 725, textlistado)
+            var.rep.line(45, 710, 525, 710)
+            var.rep.drawString(45, 725, 'Cliente: %s ' % str(apel) + '       DNI: %s' % str(dni))
+            itempro = ['Nº Factura', 'FECHA FACTURA', 'Total (€)']
+            var.rep.line(45, 680, 525, 680)
+            var.rep.drawString(45, 690, itempro[0])
+            var.rep.drawString(245, 690, itempro[1])
+            var.rep.drawString(470, 690, itempro[2])
+        except Exception as error:
+            print("Error en la cabecera de Facturas por Cliente: %s" % str(error))
+
+    def infFacCli(self):
+        '''
+
+        Modulo que se encarga de hacer un informe con todas las facturas de un cliente ordenadas
+        por fecha y con el total
+
+        :return: None
+        :rtype: None
+
+        '''
+        try:
+            textlistado = 'FACTURAS POR CLIENTE'
+            var.rep = canvas.Canvas('informes/facturasCliente.pdf', pagesize=A4)
+            Printer.cabecera(self)
+            Printer.pie(textlistado)
+            dni = var.ui.editDniFac.text()
+            apel = var.ui.editApellidoFac.text()
+            Printer.cabeceraFacCli(dni,apel,textlistado)
+            query = QtSql.QSqlQuery()
+            query.prepare('select codfactura, fecha from facturas where dni = :dni')
+            query.bindValue(':dni', str(dni))
+            total = 0.00
+            if query.exec_():
+                i = 55
+                j = 650
+                while query.next():
+                    if j <= 100:
+                        var.rep.drawString(440, 110, 'Página siguiente...')
+                        var.rep.showPage()
+                        Printer.cabecera(self)
+                        Printer.pie(textlistado)
+                        Printer.cabecerafac(self)
+                        i = 50
+                        j = 600
+                    var.rep.setFont('Helvetica', size=10)
+                    var.rep.drawString(i, j, str(query.value(0)))
+                    var.rep.drawRightString(i + 240, j, str(query.value(1)))
+
+                    query1 = QtSql.QSqlQuery()
+                    query1.prepare('select cantidad, precio from ventas where codfacventa = :codfacventa')
+                    query1.bindValue(':codfacventa', int(query.value(0)))
+                    subtotal = 0.00
+                    if query1.exec_():
+                        while query1.next():
+                            subtotal = subtotal + float(query1.value(0)) * float(query1.value(1))
+                        var.rep.drawRightString(i + 440, j, "{0:.2f}".format(float(subtotal) * 1.21) + ' €')
+                        total = total + subtotal
+                    j = j - 20
+
+            var.rep.drawRightString(i + 460, 90, 'Total Facturación Cliente:   ' + "{0:.2f}".format(float(total) * 1.21) + ' €')
+
+            var.rep.save()
+            rootPath = ".\\informes"
+            cont = 0
+
+            for file in os.listdir(rootPath):
+                if file.endswith('facturasCliente.pdf'):
+                    os.startfile("%s/%s" % (rootPath, file))
+                cont = cont + 1
+
+        except Exception as error:
+            print('Error informe facturas por cliente:  %s ' % str(error))

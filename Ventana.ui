@@ -1797,6 +1797,7 @@ background-color: rgb(242, 231, 255);</string>
     <addaction name="actionInforme"/>
     <addaction name="actionInforme_Productos"/>
     <addaction name="actionInforme_Facturas"/>
+    <addaction name="actionInforme_Factura_Cliente"/>
    </widget>
    <addaction name="menuArchivo"/>
    <addaction name="menuInformes"/>
@@ -1915,6 +1916,11 @@ background-color: rgb(242, 231, 255);</string>
    </property>
    <property name="text">
     <string>Crear Backup</string>
+   </property>
+  </action>
+  <action name="actionInforme_Factura_Cliente">
+   <property name="text">
+    <string>Informe Factura Cliente</string>
    </property>
   </action>
  </widget>

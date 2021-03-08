@@ -161,6 +161,7 @@ class Main(QtWidgets.QMainWindow):
         var.ui.actionInforme.triggered.connect(printer.Printer.reportCli)
         var.ui.actionInforme_Productos.triggered.connect(printer.Printer.reportPro)
         var.ui.actionInforme_Facturas.triggered.connect(printer.Printer.reportFac)
+        var.ui.actionInforme_Factura_Cliente.triggered.connect(printer.Printer.infFacCli)
 
         #esto es para hacer las selecciones de checkboxes o radiobuttons y comprobar si hay cambios
         for i in var.rbtsex:
