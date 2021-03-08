@@ -575,7 +575,7 @@ class Conexion():
         query.bindValue(':precio', float(var.venta[4]))
         row = var.ui.tableArtFac.currentRow()
         if query.exec_():
-            var.ui.lblstatus.setText('Venta Realizada')
+            var.ui.lblstatus.setText('Venta Realizada   Fecha: ' + str(datetime.today().strftime('%A, %d de %B de %Y')))
             var.ui.tableArtFac.setItem(row, 1, QtWidgets.QTableWidgetItem(str(var.venta[2])))
             var.ui.tableArtFac.setItem(row, 2, QtWidgets.QTableWidgetItem(str(var.venta[3])))
             var.ui.tableArtFac.setItem(row, 3, QtWidgets.QTableWidgetItem(str(var.venta[4])))
@@ -606,7 +606,7 @@ class Conexion():
         query.prepare('delete from ventas where codventa = :codVenta')
         query.bindValue(':codVenta', codVenta)
         if query.exec_():
-            var.ui.lblstatus.setText('Venta Anulada')
+            var.ui.lblstatus.setText('Venta Anulada     Fecha: ' + str(datetime.today().strftime('%A, %d de %B de %Y')))
         else:
             print("Error baja venta: ", query.lastError().text())
 
@@ -628,7 +628,7 @@ class Conexion():
         query.prepare('delete from facturas where codfactura = :codfactura')
         query.bindValue(':codfactura', int(codfactura))
         if query.exec_():
-            var.ui.lblstatus.setText('Factura Anulada')
+            var.ui.lblstatus.setText('Factura Anulada   Fecha: ' + str(datetime.today().strftime('%A, %d de %B de %Y')))
             Conexion.mostrarFacturas(self)
         else:
             print("Error anular factura en borrafac: ", query.lastError().text())
@@ -637,7 +637,7 @@ class Conexion():
         query1.prepare('delete from ventas where codfacventa = :codfactura')
         query1.bindValue(':codfac', int(codfactura))
         if query1.exec_():
-            var.ui.lblstatus.setText('Factura Anulada')
+            var.ui.lblstatus.setText('Factura Anulada   Fecha: ' + str(datetime.today().strftime('%A, %d de %B de %Y')))
         else:
             print("Error anular factura en borrafac: ", query.lastError().text())
         var.ui.lblSubtotal.setText('0.00')
@@ -691,7 +691,7 @@ class Conexion():
                             var.ui.tableArtFac.setItem(index, 4, QtWidgets.QTableWidgetItem("{0:.2f}".format(float(subtotal))+ ' €'))
                     index += 1
                     var.subfac = round(float(subtotal) + float(var.subfac), 2)
-                #ventas.Ven tas.prepararTablaventas(index)
+
             if int(index) > 0:
                 bills.Facturas.prepararTablaventas(index)
             else:

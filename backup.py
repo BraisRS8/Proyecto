@@ -138,7 +138,7 @@ class Backups():
 
             conexion.Conexion.db_connect(var.filebd)
             conexion.Conexion.mostrarProducto(self)
-            print("---------")
+
 
         except Exception as error:
             print('Error en la carga de datos: %s' % str(error))

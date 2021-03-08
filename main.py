@@ -88,7 +88,7 @@ class DialogImp(QtWidgets.QDialog):
         var.dlgimp = Ui_venimp()
         var.dlgimp.setupUi(self)
         var.dlgimp.buttonBox.button(QtWidgets.QDialogButtonBox.Yes).clicked.connect(backup.Backups.cargaDatos)
-        print('aaaa')
+
         self.setModal(True)
 
 class DialogAbout(QtWidgets.QDialog):
